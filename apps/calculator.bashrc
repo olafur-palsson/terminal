@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## Calculator
 
 alias calc="bpython -i ~/.calc.py"

@@ -1,3 +1,4 @@
+#!/bin/bash
 
 starcraft2() {
   setxkbmap us

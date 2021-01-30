@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## Task Warrior
 
 # View what is due in the next 7 days on taskwarrior

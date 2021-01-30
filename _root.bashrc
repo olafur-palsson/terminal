@@ -1,10 +1,10 @@
+#!/bin/bash
+
 # TODO :
 #   Make an 'install -s' function for apt that installs into a list of files to install after backup
 #   Maybe make a package.json type of file to backup and extract from stuff.
 
 
-
-#:wq!/bin/bash
 
 # Load .bashrc here
 import "$TERMINAL/init" # Very~/ generic .bashrc

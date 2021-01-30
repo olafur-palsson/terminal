@@ -1,3 +1,4 @@
+#!/bin/bash
 
 ## This is what should be stored as your root .bashrc
 

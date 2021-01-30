@@ -1,3 +1,4 @@
+#!/bin/bash
 
 hubstaffreport() {
   today=$(date '+%Y-%m-%d')

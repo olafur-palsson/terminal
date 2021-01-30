@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export TERMINAL_APPS="$TERMINAL/apps"
 
 import "$TERMINAL_APPS/taskwarrior"

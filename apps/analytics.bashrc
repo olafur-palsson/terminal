@@ -1,3 +1,4 @@
+#!/bin/bash
 
 pipe_file_has_line_with() {
   expression=$1

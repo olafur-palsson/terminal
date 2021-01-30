@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
