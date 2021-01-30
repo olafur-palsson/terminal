@@ -5,6 +5,11 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Kill process by regex expression
+killregex() {
+  ps -Alf |grep -i $1 |grep -v grep |awk -F' ' '{print $4}' |xargs kill -9
+}
+
 # Reload Bash Source
 alias sobash="source ~/.bashrc"
 
@@ -63,28 +68,13 @@ alias addkey="sudo apt-key adv --keyserver pgp.mit.edu --recv-keys"
 # and then something like F76221572C52609D to solve 'NO_PUBKEY ...' Error during apt-get update
 
 filter_file() {
-  list="$1"
+  while [ $# -gt 0 ]; do
+    if [ $(cat $0 | grep -c) ]; then
+      echo $0
+    fi
+  done
+
   while read string; do
     grep -Fxv "$string" $list
   done
 }
-
-## Task Warrior
-alias tt="task due.after:now-7days list"
-# View what is due in the next 7 days on taskwarrior
-alias ttn="task due.after:now-7days list | head -4; echo ' '"
-# View next due task
-alias ttv="tt | grep -e 'Verk'"
-# All containing the word 'Verk' (i.e. work material)
-alias ttvn="ttv | head -1"
-
-alias upgradepip3="pip3 list --outdated | cut -d ' ' -f1 | tail -n +3 | xargs pip3 install --upgrade"
-alias upgradepip2="pip list --outdated | cut -d ' ' -f1 | tail -n +3 | xargs pip install --upgrade"
-upgradepip() {
-	# Upgrade pip, use upgradepip2 or upgradepip3 to only upgrade those
-	upgradepip3
-	upgradepip2
-}
-
-
-

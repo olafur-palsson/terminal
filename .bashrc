@@ -13,6 +13,14 @@ import() {
   fi
 }
 
+var() {
+  eval "export $1=\"$2\""
+}
+
+path() {
+  eval var PATH "$PATH:$1"
+}
+
 export TERMINAL="~/projects"
 
 # Load .bashrc here
@@ -31,46 +39,31 @@ alias velmodel="watch_do ./src '*pp' 'cmake . -DCMAKE_PREFIX_PATH=libtorch; make
 
 gen='~/.genericFiles/'
 setup="$gen""setupscripts/"
-export EDITOR="nvim"
-export PATH="$PATH:/home/pimp-of-pimps/anaconda/bin"
-export PATH="$PATH:~/java8/java8"
-export PYTHONSTARTUP="$HOME/.pythonrc"
-export ANDROID_HOME="/usr/lib/android-sdk"
-export GOOGLE_APPLICATION_CREDENTIALS="/home/oli/projects/dexter/legacy-functions/functions/utils/services/__service_account_dev.json"
-export GCLOUD_DEV_KEYFILE="/home/oli/projects/dexter/legacy-functions/functions/utils/services/__service_account_dev.json"
-export GCLOUD_PROD_KEYFILE="/home/oli/Downloads/dexterdata-e5352-6ebca7986e93.json"
 
+var EDITOR nvim
+var PYTHON_STARTUP "$HOME/.pythonrc"
+var ANDROID_HOME /usr/lib/android-sdk
+var GOOGLE_APPLICATION_CREDENTIALS /home/oli/projects/dexter/legacy-functions/functions/utils/services/__service_account_dev.json
+var GCLOUD_DEV_KEYFILE /home/oli/projects/dexter/legacy-functions/functions/utils/services/__service_account_dev.json
+var GCLOUD_PROD_KEYFILE /home/oli/Downloads/dexterdata-e5352-6ebca7986e93.json
+
+path /home/pimp-of-pimps/anaconda/bin
+path ~/java8/java8
 
 
 ## Shortcuts
 
-alias killws="ps -Alf |grep -i webstorm |grep -v grep |awk -F' ' '{print \$4}' |xargs kill -9 "
-alias killpwms="ps -Alf |grep -i pipwire-media-session |awk -F' ' '{print \$4}' |xargs kill -9"
-alias desktop="ssh pimp@130.208.144.53"
-alias server='ssh root@104.248.81.125'
 alias helpv="help; view README.md"
 alias atom='taskset --cpu-list 1,2,3 atom'
-alias blender="nohup ~/Downloads/blender-2.79b-linux-glibc219-x86_64/blender &"
-alias astudio="nohup ~/Downloads/android-studio/bin/studio.sh &"
-alias wwwroot='cd /var/www/html'
-alias laverna="/usr/share/laverna-0.7.51-linux-x64/laverna"
-# Laverna shortcut
-alias sdkmanager="~/Downloads/android/tools/bin/sdkmanager"
-# Shortcut to Android SDK Manager
-# DigitalOcean Personal Server
 
 killregex() {
   ps -Alf |grep -i $1 |grep -v grep |awk -F' ' '{print $4}' |xargs kill -9
 }
 
-
-alias pip="pip3"
 alias sobash=". ~/.bashrc"
 alias docker="sudo docker"
 #docker always sudo
 
-alias t='tmux a -t "normal"'
-# Attach to tmux session 'normal', handy for the tmux-resurrect megasession
 
 alias pybook="jupyter notebook"
 # Simple alias for 'jupyter notebook'
@@ -135,50 +128,6 @@ dexshell() {
   firebase functions:shell
 }
 
-squashbranch() {
-  our=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
-  dir=$(git rev-parse --show-toplevel)
-
-  their=$1
-  message=$2
-
-  echo "Their branch: $their"
-  echo "Our branch $our"
-  echo "Message: $message"
-
-  if [ $our = "master" || $our = "staging" ]; then
-    echo "Unsafe parameters"
-    return 125
-  fi
-
-  read -p "Continue? (y/n) " should_continue
-
-  if [ $should_continue = "y" ]; then
-    # Soft reset and create a HEAD with the version you want
-    git fetch --all
-    git reset --soft origin/$their
-    git commit -m "Temp commit"
-    git checkout $their
-    git reset --hard origin/$their
-
-    # Create a temporary branch
-    git checkout -b temp-branch
-
-    # Retrieve the diff between master and your-branch and commit with a single commit
-    git checkout $our $dir
-    git commit -m "$message"
-
-    # Force push to the feature branch
-    git push . temp-branch:$our -f
-
-    # Clean up
-    git checkout $our
-    git branch -D temp-branch
-  else
-    echo "Cancelled"
-  fi
-}
-
 
 ## MISC
 
@@ -202,8 +151,6 @@ gppp() {
   g++ -o $filename'.o' $1 -std=c++14
   unset $filename
 }
-
-[ -f ~/.local/share/funky/funky.sh ] && source ~/.local/share/funky/funky.sh
 
 nightmodeupdate() {
   node ~/.nightmode.js | bash
