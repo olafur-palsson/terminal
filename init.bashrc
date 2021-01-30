@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -11,20 +7,23 @@ case $- in
 esac
 
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
+## History
+
+# No duplicate history
 HISTCONTROL=ignoreboth
 
-# append to the history file, don't overwrite it
+# Append, not overwrite history
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+# Maximum history
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# Auto-update window size
 shopt -s checkwinsize
+
+
+## Less pipe
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -37,6 +36,9 @@ shopt -s checkwinsize
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
+
+
+## Prompt
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
@@ -95,7 +97,7 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 
-
+## Autocomplete
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

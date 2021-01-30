@@ -51,3 +51,15 @@ squashbranch() {
     echo "Cancelled"
   fi
 }
+
+## AWS
+
+awsprofile() {
+  export AWS_PROFILE=$1
+}
+
+## GCLOUD
+
+fireshell() {
+  firebase functions:shell
+}

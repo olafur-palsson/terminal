@@ -1,0 +1,1 @@
+alias firebasu="firebase"
