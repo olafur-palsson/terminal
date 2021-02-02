@@ -1,0 +1,14 @@
+# /home/oli/.config/tmuxinator/dexter.yml
+
+name: dexter-front
+root: ~/
+# https://github.com/tmuxinator/tmuxinator
+
+windows:
+  - dexter:
+      root: ~/projects/dexter
+      panes:
+        - dexter
+        - cd backend/core && npm run start
+        - cd packages/dexter-entities && npm run build && npm run dev
+        - cd backend/core && npm i && npm run build && npm run autobuild

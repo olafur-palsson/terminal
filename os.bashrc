@@ -1,9 +1,15 @@
 #!/bin/bash
 
-# Terminal
+## Terminal
+
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+# Show disk usage of each folder in a folder
+disk_use() {
+  du -h --max-depth=1 | sort -rh
+}
 
 # Kill process by regex expression
 killregex() {
@@ -32,6 +38,8 @@ killregex() {
   ps -Alf |grep -i $1 |grep -v grep |awk -F' ' '{print $4}' |xargs kill -9
 }
 
+# Search history of bash
+alias searchhistory="history | grep"
 
 # Probably the best bash function I have made
 watch_do() {

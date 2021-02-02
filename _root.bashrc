@@ -8,9 +8,10 @@
 
 # Load .bashrc here
 import "$TERMINAL/init" # Very~/ generic .bashrc
-import "$TERMINAL/console" # Tools for bash
+import "$TERMINAL/os" # Tools for bash
 import "$TERMINAL/devops" # Devops stuff
 import "$TERMINAL/editor" # Devops stuff
+import "$TERMINAL/languages" # Devops stuff
 import "$TERMINAL/apps/_index" # Devops stuff
 
 ## Current project shortcuts
@@ -36,9 +37,6 @@ path ~/java8/java8
 
 alias sobash=". ~/.bashrc"
 alias sobashdev=". $TERMINAL/.bashrc"
-
-alias help="awk -f ~/.genericFiles/getdocumentation.awk ~/*.bashrc > ~/README.md; cat ~/README.md"
-alias helpv="help; view README.md"
 
 alias seeya='systemctl hibernate'
 alias bye='sudo shutdown now'
