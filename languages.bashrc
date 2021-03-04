@@ -65,5 +65,4 @@ autocompilecpp() {
 
 ## Java
 
-#
 alias uninstalljava="sudo ~/.genericFiles/uninstallJava.sh"

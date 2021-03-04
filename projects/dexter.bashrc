@@ -1,6 +1,8 @@
 #!/bin/bash
 
-export DEXTER="$PROJECTS/dexter"
+var DEXTER $PROJECTS/dexter
+var GCLOUD_DEV_KEYFILE $PROJECTS/dexter/backend/core/config/keyfile.json
+var GCLOUD_PROD_KEYFILE $PROJECTS/dexter/backend/core/config/keyfile-prod.json
 
 # Run Dexter front-end
 dexter() {
@@ -11,9 +13,11 @@ dexter() {
 
 # dex [--start, --stop]
 dex () {
+  tkillall && killregex node
   if [ $2 == '--start' ]; then
-    firefox
-    webstorm &
+    firefox > /dev/null &
+    slack
+    webstorm > /dev/null &
     tmuxinator stop "dexter-$1"
     cd ~/projects/dexter
     tmuxinator "dexter-$1"

@@ -4,16 +4,12 @@
 
 import() {
   suffix='.bashrc'
-  [ -z "$2" ] && suffix='.bashrc' || suffix=""
   file_name="$1$suffix"
-  if [ -f $file_name ]; then
-    # if [ -z "$TERMDEBUG" ]; then
-    #   echo $file_name
-    # fi
+  if [ -f $file_name ]
+  then
     . $file_name
   else
     echo "ImportError: $file_name"
-    echo "If this is not the file you wanted, try 'import_verbatim'"
   fi
 }
 
@@ -29,8 +25,18 @@ path() {
   eval var PATH "$PATH:$1"
 }
 
-export TERMINAL="$HOME/projects/terminal"
-export TERMINAL_ROOT="$TERMINAL/_root.bashrc"
+switch_case_looks_like_this () {
+  case $1 in
+    cat)      echo evil
+    ;; wolf)  echo mammal
+    ;; duck)  echo bird
+    ;; shark) echo fish
+    ;; *)     echo I have no idea what a $1 is
+  esac
+}
+
+var TERMINAL $HOME/projects/terminal
+var TERMINAL_ROOT $TERMINAL/_root.bashrc
 
 if [ -f "$TERMINAL_ROOT" ]; then
   . $TERMINAL_ROOT

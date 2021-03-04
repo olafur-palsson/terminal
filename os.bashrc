@@ -16,6 +16,21 @@ killregex() {
   ps -Alf |grep -i $1 |grep -v grep |awk -F' ' '{print $4}' |xargs kill -9
 }
 
+# Kills all processes that match $1, if $2 is provided, run $2 else run $1
+refresh_process() {
+  killregex $1
+  if [ -z "$2" ]; then
+    eval "$1"
+  else
+    eval "$2"
+  fi
+}
+
+redo() {
+  local a=$(history | grep "^\s$1" | cut --delimiter=" " -f4-)
+  eval "$a"
+}
+
 # Update and upgrade all
 alias update='pkcon update -y'
 
@@ -37,6 +52,7 @@ showcolors() {
 killregex() {
   ps -Alf |grep -i $1 |grep -v grep |awk -F' ' '{print $4}' |xargs kill -9
 }
+
 
 # Search history of bash
 alias searchhistory="history | grep"

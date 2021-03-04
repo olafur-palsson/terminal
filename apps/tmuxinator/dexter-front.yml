@@ -9,6 +9,6 @@ windows:
       root: ~/projects/dexter
       panes:
         - dexter
-        - cd backend/core && npm run start
+        - cd backend/core && npm run watch
         - cd packages/dexter-entities && npm run build && npm run dev
         - cd backend/core && npm i && npm run build && npm run autobuild

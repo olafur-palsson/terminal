@@ -1,5 +1,9 @@
 #!/bin/bash
 
+## Hubstaff
+var HUBSTAFF_ID 308837
+
+# Open reports
 hubstaffreport() {
   today=$(date '+%Y-%m-%d')
   day=$(date --date="$1" '+%Y-%m-%d')
@@ -11,24 +15,21 @@ hubstaffreport() {
   firefox "$base$day$date_end$today$end_of_string"
 }
 
+# Open weekly overview
 hubstaffweek() {
   a_week_ago=$(date --date="7 days ago" '+%Y-%m-%d')
   hubstaffreport "7 days ago"
 }
 
+# Open overview for today
 hubstafftoday() {
   today=$(date '+%Y-%m-%d')
   a_day_ago=
   hubstaffreport today
 }
 
-
+# Yesterdays report
 hubstaffyesterday() {
   yesterday=$(date --date="yesterday" '+%Y-%m-%d')
   hubstaffreport yesterday
-}
-
-hubstaffyesterday() {
-  a_day_ago=$(date --date="1 day ago" '+%Y-%m-%d')
-  hubstaffreport $a_week_ago
 }
