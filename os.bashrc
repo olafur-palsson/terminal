@@ -6,6 +6,11 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+backlight() {
+  local b=$(( $1 * 50 ))
+  sudo sh -c "echo $b > /sys/class/backlight/intel_backlight/brightness"
+}
+
 # Show disk usage of each folder in a folder
 disk_use() {
   du -h --max-depth=1 | sort -rh

@@ -7,6 +7,36 @@
 # Force get the latest updates from master
 alias githardreset='git fetch --all; git reset --hard origin/master'
 
+
+__git_complete ch _git_checkout
+# git checkout shortcut
+alias ch="git checkout"
+
+# git status shortcut
+alias st="git status"
+
+# git add shortcut
+alias add="git add"
+
+# git push shortcut
+alias push="git push"
+
+__git_complete pull _git_pull
+# git pull shortcut
+alias pull="git pull"
+
+__git_complete pull _git_pull
+# git pull shortcut
+alias pullr="git pull --rebase"
+
+__git_complete reb _git_pull
+# git pull shortcut
+alias reb="git rebase"
+
+__git_complete rebi _git_pull
+# git pull shortcut
+alias rebi="git rebase --interactive"
+
 # Create diff from branch $1 and push -f to branch $2
 squashbranch() {
   our=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')

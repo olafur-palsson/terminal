@@ -2,8 +2,10 @@
 
 ## Calculator
 
+var CALC_PYTHON "$TERMINAL_APPS/.calc.py"
+
 # Run calculator
-alias calc="bpython -i ~/.calc.py"
+alias calc="bpython -i $CALC_PYTHON"
 
 # Edit the calculator script
-alias calcedit="nvim ~/.calc.py"
+alias calcedit="nvim $CALC_PYTHON"

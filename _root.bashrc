@@ -8,11 +8,11 @@
 
 # Load .bashrc here
 import "$TERMINAL/init"
+import "$TERMINAL/apps/_index"
 import "$TERMINAL/os"
 import "$TERMINAL/devops"
 import "$TERMINAL/editor"
 import "$TERMINAL/languages"
-import "$TERMINAL/apps/_index"
 import "$TERMINAL/projects/_index"
 
 ## Current project shortcuts
@@ -27,8 +27,6 @@ var EDITOR nvim
 var PYTHON_STARTUP "$HOME/.pythonrc"
 var ANDROID_HOME /usr/lib/android-sdk
 var GOOGLE_APPLICATION_CREDENTIALS /home/oli/projects/dexter/legacy-functions/functions/utils/services/__service_account_dev.json
-var GCLOUD_DEV_KEYFILE /home/oli/projects/dexter/legacy-functions/functions/utils/services/__service_account_dev.json
-var GCLOUD_PROD_KEYFILE /home/oli/Downloads/dexterdata-e5352-6ebca7986e93.json
 
 path /home/pimp-of-pimps/anaconda/bin
 path ~/java8/java8
