@@ -16,5 +16,7 @@ import "$TERMINAL_APPS/kde"
 import "$TERMINAL_APPS/git-completion"
 import "$TERMINAL_APPS/npm-completion"
 import "$TERMINAL_APPS/3dprint"
+import "$TERMINAL_APPS/git-tools"
+import "$TERMINAL_APPS/youtube"
 
 # import "$TERMINAL_APPS/serverless"

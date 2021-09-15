@@ -1,8 +1,7 @@
 #!/bin/bash
 
 var DEXTER $PROJECTS/dexter
-var GCLOUD_DEV_KEYFILE $PROJECTS/dexter/backend/core/config/keyfile.json
-var GCLOUD_PROD_KEYFILE ~/.gcloud/keyfile-prod.json
+var GCLOUD_DEV_KEYFILE $PROJECTS/dexter/backend/service_account_keys/dev.json
 var DEXTER_CREDS ~/.dexterCredentials.json
 
 # Run Dexter front-end
@@ -35,7 +34,7 @@ dex () {
 
 # Use dev credentials
 dexusedev() {
-  export GOOGLE_APPLICATION_CREDENTIALS="$GCLOUD_DEV_KEYFILE "
+  export GOOGLE_APPLICATION_CREDENTIALS="$GCLOUD_DEV_KEYFILE"
   sed -i /home/oli/projects/dexter/frontend/config/firebase.js -e 's/true/false/'
   gcloud config set account "dexter-test-c5195@appspot.gserviceaccount.com"
 
