@@ -61,8 +61,3 @@ autocompilecpp() {
         && echo "$filetocompile compiled."
     done
 }
-
-
-## Java
-
-alias uninstalljava="sudo ~/.genericFiles/uninstallJava.sh"

@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#
+#
+#  This is the normal things people put in their .bashrc. It's a copy-paste file
+#  and is almost like a programmer chain-mail thing.
+#
+#
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -41,9 +48,10 @@ fi
 ## Prompt
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
+color_prompt=yes
+# case "$TERM" in
+#     xterm-color|*-256color) color_prompt=yes;;
+# esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window

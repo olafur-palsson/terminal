@@ -1,9 +1,5 @@
 #!/bin/bash
 
-var DEXTER $PROJECTS/dexter
-var GCLOUD_DEV_KEYFILE $PROJECTS/dexter/backend/service_account_keys/dev.json
-var DEXTER_CREDS ~/.dexterCredentials.json
-
 # Run Dexter front-end
 dexter() {
   cd ~/projects/dexter/frontend
