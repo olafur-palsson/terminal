@@ -35,7 +35,7 @@ var() {
 
 ## Add to path
 path() {
-  eval var PATH "$PATH:$1"
+  PATH="$PATH:$1"
 }
 
 

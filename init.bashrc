@@ -73,10 +73,11 @@ fi
 # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 if [ "$color_prompt" = yes ]; then
-  PS1="\[\e[32m\]\h \[\e[m\]\[\e[33m\]\A\[\e[m\] \[\e[34m\]\w\[\e[m\] $ "
+  PS1="\[\e[32m\]Oli \[\e[m\]\[\e[33m\]\A\[\e[m\] \[\e[34m\]\w\[\e[m\] $ "
   # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}olafur-palsson @\h:\w\$ '
+  # PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
