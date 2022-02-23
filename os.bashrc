@@ -2,6 +2,9 @@
 
 ## Terminal
 
+# Constants
+var HISTTIMEFORMAT "%y-%m-%dT%T "
+
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -10,6 +13,8 @@ backlight() {
   local b=$(( $1 * 50 ))
   sudo sh -c "echo $b > /sys/class/backlight/intel_backlight/brightness"
 }
+
+alias search_files="grep -rnw . -e"
 
 # Show disk usage of each folder in a folder
 disk_use() {
@@ -32,7 +37,7 @@ refresh_process() {
 }
 
 redo() {
-  local a=$(history | grep "^\s$1" | cut --delimiter=" " -f4-)
+  local a=$(history | grep "^\s$1" | cut --delimiter=" " -f 5-)
   eval "$a"
 }
 

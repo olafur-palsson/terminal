@@ -1,10 +1,16 @@
 var WINDOWS "/mnt/c/Users/Olafur"
 var CUBUS "$WINDOWS/projects"
+var SQL_VOGUE "data source=DESKTOP-G5OK21D\SQLEXPRESS02;initial catalog=master;trusted_connection=true"
+
+sql_vogue() {
+  echo 'sqlcmd -S DESKTOP-G5OK21D\SQLEXPRESS02 -E'
+}
 
 cucommit() {
   cd `git rev-parse --show-toplevel`
   git add .
   git reset wwwroot
+  git reset CubeShop/wwwroot
   if [ -z "$1" ]
   then
     echo "No arg provided"
@@ -23,8 +29,34 @@ cubranch() {
   fi
 }
 
+cunexttask() {
+  if [ -z "$1" ]
+  then
+    echo "No project provided"
+  else
+    if [ -z "$2" ]
+    then
+      echo "No new-branch name provided"
+    else
+      eval "$1"
+      if [ -z "$3" ]
+      then
+        echo "Branching off main"
+	g-reset main && cubranch "$2" && eval "$1 start"
+      else
+        g-reset "$3" && cubranch "$2" && eval "$1 start"
+      fi
+    fi
+  fi
+
+}
+
 ghtoken() {
   cat ~/githubtoken | clipboard
+}
+
+ab() {
+  cubeshop "$CUBUS/ABVendor" "CubeShop/ABVendorClientApp" "$@"
 }
 
 rekkjan() {

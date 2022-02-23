@@ -1,3 +1,9 @@
+g-log() {
+  local current-time=`date --iso-8601=seconds`
+  echo "$current-time | $0" >> ~/.git-log
+}
+
+
 g-rebase-branch() {
   if [ -z "$1" ]
   then
@@ -38,13 +44,7 @@ g-new-patch() {
   then
     echo "Provide git version ref in first arg"
   else
-
-    if [ -z "$2" ]
-    then
-      echo "Provide git version ref in second arg"
-    else
-      git log -p --reverse --pretty=email --stat -m --first-parent "$1".."$2"
-    fi
+    git log -p --reverse --pretty=email --stat -m --first-parent "$1"
   fi
 }
 
