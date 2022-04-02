@@ -8,5 +8,6 @@ import "$TERMINAL_PROJECTS/guitar_app"
 import "$TERMINAL_PROJECTS/finance"
 import "$TERMINAL_PROJECTS/personal"
 import "$TERMINAL_PROJECTS/schoolio"
+import "$TERMINAL_PROJECTS/cubus"
 
 # import "$TERMINAL_APPS/serverless"
