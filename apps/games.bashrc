@@ -10,6 +10,10 @@ crusaderkings3() {
   steam steam://rungameid/1158310
 }
 
+factorio() {
+  steam steam://rungameid/427520
+}
+
 hollowknight() {
   steam steam://rungameid/367520
 }

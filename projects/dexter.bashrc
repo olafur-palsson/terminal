@@ -29,18 +29,18 @@ dex () {
 }
 
 # Use dev credentials
-dexusedev() {
-  export GOOGLE_APPLICATION_CREDENTIALS="$GCLOUD_DEV_KEYFILE"
-  sed -i /home/oli/projects/dexter/frontend/config/firebase.js -e 's/true/false/'
-  gcloud config set account "dexter-test-c5195@appspot.gserviceaccount.com"
+# dexusedev() {
+  # export GOOGLE_APPLICATION_CREDENTIALS="$GCLOUD_DEV_KEYFILE"
+  # sed -i /home/oli/projects/dexter/frontend/config/firebase.js -e 's/true/false/'
+  # gcloud config set account "dexter-test-c5195@appspot.gserviceaccount.com"
 
-}
+#}
 
 # Use prod credentials
-dexuseprod() {
-  export GOOGLE_APPLICATION_CREDENTIALS="$GCLOUD_PROD_KEYFILE"
-  gcloud config set account "dexterdata-e5352@appspot.gserviceaccount.com"
-}
+# dexuseprod() {
+  # export GOOGLE_APPLICATION_CREDENTIALS="$GCLOUD_PROD_KEYFILE"
+  # gcloud config set account "dexterdata-e5352@appspot.gserviceaccount.com"
+# }
 
 # Run the shell for firebase functions
 dexshell() {

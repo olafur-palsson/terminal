@@ -9,4 +9,4 @@ personal_gcloud() {
   fi
 }
 
-personal_gcloud
+# personal_gcloud
