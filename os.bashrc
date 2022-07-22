@@ -26,6 +26,10 @@ killregex() {
   ps -Alf |grep -i $1 |grep -v grep |awk -F' ' '{print $4}' |xargs kill -9
 }
 
+killlist() {
+  ps -Alf |grep -i $1 |grep -v grep|awk -F' ' '{print $15}' 
+}
+
 # Kills all processes that match $1, if $2 is provided, run $2 else run $1
 refresh_process() {
   killregex $1

@@ -13,6 +13,9 @@ alias ch="git checkout"
 # git status shortcut
 alias st="git status"
 
+# git ammend no edit shortcut
+alias am="git commit --amend --no-edit"
+
 # git add shortcut
 alias addall="git add -A"
 

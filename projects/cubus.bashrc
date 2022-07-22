@@ -1,9 +1,13 @@
-var WINDOWS "/mnt/c/Users/Olafur"
-var CUBUS "$WINDOWS/projects"
+var CUBUS "/home/oli/projects"
 var SQL_VOGUE "data source=DESKTOP-G5OK21D\SQLEXPRESS02;initial catalog=master;trusted_connection=true"
 
 sql_vogue() {
   echo 'sqlcmd -S DESKTOP-G5OK21D\SQLEXPRESS02 -E'
+}
+
+endwork() {
+  echo "Logging time..."
+  uptime -s | xargs ts-node "$CUBUS/harvest/logTimeToHarvest.ts" && sleep 0.5 && systemctl poweroff
 }
 
 cucommit() {
@@ -68,7 +72,7 @@ sekkur() {
 }
 
 regalo() {
-	cubeshop "$CUBUS/regalo" "RegaloClientApp" "$@"
+	cubeshop "$CUBUS/Regalo" "RegaloClientApp" "$@"
 }
 
 bilanaust() {
@@ -95,15 +99,36 @@ solar() {
 	cubeshop "$CUBUS/SolarVendor" "SolarVendorClientApp" "$@"
 }
 
+bpro() {
+	cubeshop "$CUBUS/BProVendor" "BProClientApp" "$@"
+}
+
+ntc() {
+	cubeshop "$CUBUS/NtcVendor" "NtcClientApp" "$@"
+}
+
 cubeshop() {
+	local command="$0"
 	local root="$1"
 	local webapproot="$2"
 	shift 2
 	cd "$root"
+
 	if [ ! -z "$1" ]; then
 	    cd "$webapproot"
-	    echo "npm ${@: 1}"
-	    eval "npm ${@: 1}"
+	    if [ "$1" = "storm" ]; then
+	    	nohup webstorm . & echo "Webstorm for $webapproot started"
+	    elif [ "$1" = "all" ]; then
+	    	eval "cubeshop $root $webapproot storm"
+	    	eval "cubeshop $root $webapproot ride"
+	    	eval "cubeshop $root $webapproot start"
+	    elif [ "$1" = "ride" ]; then
+	    	cd -
+	    	nohup rider CubeShop.sln & echo "Rider for $root started"
+	    else
+	        echo "npm ${@: 1}"
+	        eval "npm ${@: 1}"
+	    fi
 	fi
 }
 
