@@ -1,0 +1,46 @@
+
+/* pop up fix */
+#mainPopupSet:hover ~ box > #navigator-toolbox > #nav-bar {
+    margin-top: 0px;
+    margin-bottom: -36px;
+    transition-delay: 0s;
+    opacity: 1;
+}
+
+/* Auto-hide nav-bar */
+#nav-bar:not([customizing]){
+    z-index: 1;
+    margin-top: -66px;
+    margin-bottom: 30px;
+    transition-delay: 0.2s;
+    border-bottom: solid 1px #999;
+    opacity: 0;
+}
+
+:root:not([customizing]) :hover > #nav-bar,
+#nav-bar:hover,
+#nav-bar:focus-within,
+#identity-box[open="true"],
+#navigator-toolbox:hover > #nav-bar:not([customizing]),
+#toolbar-menubar:not([inactive="true"]) ~ #nav-bar:not([customizing]) {
+    margin-top: 0px;
+    margin-bottom: -36px;
+    transition-delay: 0s;
+    opacity: 1;
+}
+
+#nav-bar .toolbarbutton-1[open="true"]{
+    visibility: visible;
+    opacity: 100;
+}
+
+#nav-bar {
+    transition: all 0.3s ease;
+}
+
+#titlebar {
+    background-color: #333;
+    opacity: 1;
+    position: relative;
+    z-index: 1000000000;
+}

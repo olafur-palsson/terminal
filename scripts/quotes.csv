@@ -1,0 +1,105 @@
+﻿"Clean Code - Uncle Bob;The name of a variable, function, or class, should answer all the big questions. It should tell you why it exists, what it does, and how it is used. If a name requires a comment, then the name does not reveal its intent."
+Clean Code - Uncle Bob;The length of a name should correspond to the size of its scope
+"Clean Code - Uncle Bob;When constructors are overloaded, use static factory methods with names that describe the arguments. For example, Click here to view code image    Complex fulcrumPoint = Complex.FromRealNumber(23.0); is generally better than Click here to view code image    Complex fulcrumPoint = new Complex(23.0); Consider enforcing their use by making the corresponding constructors private."
+"Clean Code - Uncle Bob;We can describe the function by describing it as a brief TO4 paragraph: 4. The LOGO language used the keyword “TO” in the same way that Ruby and Python use “def.” So every function began with the word “TO.” This had an interesting effect on the way functions were designed. TO RenderPageWithSetupsAndTeardowns, we check to see whether the page is a test page and if so, we include the setups and teardowns. In either case we render the page in HTML."
+Clean Code - Uncle Bob;One Level of Abstraction per Function
+Clean Code - Uncle Bob;Listing 3-5 Employee and Factory
+Clean Code - Uncle Bob;Passing a boolean into a function is a truly terrible practice.
+"Clean Code - Uncle Bob;A function with two arguments is harder to understand than a monadic function. For example, writeField(name) is easier to understand than writeField(output-Stream, name).10 Though the meaning of both is clear, the first glides past the eye, easily depositing its meaning. The second requires a short pause until we learn to ignore the first parameter. And that, of course, eventually results in problems because we should never ignore any part of code. The parts we ignore are where the bugs will hide."
+"Clean Code - Uncle Bob;Have No Side Effects Side effects are lies. Your function promises to do one thing, but it also does other hidden things."
+"Clean Code - Uncle Bob;In the end, I wind up with functions that follow the rules I’ve laid down in this chapter. I don’t write them that way to start. I don’t think anyone could."
+Clean Code - Uncle Bob;“Don’t comment bad code—rewrite it.”
+Clean Code - Uncle Bob;The proper use of comments is to compensate for our failure to express ourself in code.
+Clean Code - Uncle Bob;Another use for white space is to accentuate the precedence of operators.
+Clean Code - Uncle Bob;I can’t tell you how many times I’ve been fooled by a semicolon silently sitting at the end of a while loop on the same line.
+Clean Code - Uncle Bob;In both of the above cases the second option is preferable. We do not want to expose the details of our data. Rather we want to express our data in abstract terms. This is not merely accomplished by using interfaces and/or getters and setters. Serious thought needs to be put into the best way to represent the data that an object contains. The worst option is to blithely add getters and setters.
+"Clean Code - Uncle Bob;OO are easy for procedures, and the things that are hard for procedures are easy for OO! In any complex system there are going to be times when we want to add new data types rather than new functions. For these cases objects and OO are most appropriate. On the other hand, there will also be times when we’ll want to add new functions as opposed to data types. In that case procedural code and data structures will be more appropriate."
+"Clean Code - Uncle Bob;The method should not invoke methods on objects that are returned by any of the allowed functions. In other words, talk to friends, not to strangers."
+Clean Code - Uncle Bob;Write Your Try-Catch-Finally Statement First
+"Clean Code - Uncle Bob;Not true when throws Exception is used , open closed princ. is still active"
+Clean Code - Uncle Bob;Checked exceptions can sometimes be useful if you are writing a critical library: You must catch them. But in general application development the dependency costs outweigh the benefits.
+"Clean Code - Uncle Bob;The moral of the story is simple: Test code is just as important as production code. It is not a second-class citizen. It requires thought, design, and care. It must be kept as clean as production code."
+"Clean Code - Uncle Bob;It is unit tests that keep our code flexible, maintainable, and reusable. The reason is simple. If you have tests, you do not fear making changes to the code!"
+"Clean Code - Uncle Bob;What makes tests readable? The same thing that makes all code readable: clarity, simplicity, and density of expression."
+"Clean Code - Uncle Bob;You should be able to run the tests in the production environment, in the QA environment, and on your laptop while riding home on the train without a network."
+"Clean Code - Uncle Bob;For example, class names including weasel words like Processor or Manager or Super often hint at unfortunate aggregation of responsibilities."
+"Clean Code - Uncle Bob;We should also be able to write a brief description of the class in about 25 words, without using the words “if,” “and,” “or,” or “but.”"
+Clean Code - Uncle Bob;Do you want your tools organized into toolboxes with many small drawers each containing well-defined and well-labeled components? Or do you want a few drawers that you just toss everything into?
+"Clean Code - Uncle Bob;When classes lose cohesion, split them!"
+"Clean Code - Uncle Bob;From a test standpoint, it becomes an easier task to prove all bits of logic"
+"Clean Code - Uncle Bob;A good API should largely disappear from view most of the time, so the team expends the majority of its creative efforts focused on the user stories being implemented."
+"Clean Code - Uncle Bob;Whether you are designing systems or individual modules, never forget to use the simplest thing that can possibly work."
+"Clean Code - Uncle Bob;According to Kent, a design is “simple” if it follows these rules: • Runs all the tests • Contains no duplication • Expresses the intent of the programmer • Minimizes the number of classes and methods"
+"Clean Code - Uncle Bob;Arguably, a system that cannot be verified should never be deployed."
+"Clean Code - Uncle Bob;It’s just easier to test classes that conform to the SRP. The more tests we write, the more we’ll continue to push toward things that are simpler to test. So making sure our system is fully testable helps us create better designs."
+Clean Code - Uncle Bob;Writing tests leads to better designs.
+Clean Code - Uncle Bob;The fact that we have these tests eliminates the fear that cleaning up the code will break it!
+Clean Code - Uncle Bob;“Objects are abstractions of processing. Threads are abstractions of schedule.”
+Clean Code - Uncle Bob;Recommendation: Keep your concurrency-related code separate from other code.6
+Clean Code - Uncle Bob;Corollary: Threads Should Be as Independent as Possible
+Clean Code - Uncle Bob;Recommendation: Think about shut-down early and get it working early. It’s going to take longer than you expect. Review existing algorithms because this is probably harder than you think.
+"Clean Code - Uncle Bob;Recommendation: Write tests that have the potential to expose problems and then run them frequently, with different programatic configurations and system configurations and load. If tests ever fail, track down the failure. Don’t ignore a failure just because the tests pass on a subsequent run."
+Clean Code - Uncle Bob;Instrument your code to try and force failures.
+"Clean Code - Uncle Bob;The longer these “one-offs” are ignored, the more code is built on top of a potentially faulty approach."
+Clean Code - Uncle Bob;Consider allowing self-tuning based on throughput and system utilization.
+"Clean Code - Uncle Bob;The first implements jiggle to do nothing and is used in production. The second generates a random number to choose between sleeping, yielding, or just falling through. If you run your tests a thousand times with random jiggling, you may root out some flaws. If the tests pass, at least you can say you’ve done due diligence. Though a bit simplistic, this could be a reasonable option in lieu of a more sophisticated tool."
+"Clean Code - Uncle Bob;A more subtle form is the switch/case or if/else chain that appears again and again in various modules, always testing for the same set of conditions. These should be replaced with polymorphism."
+"Clean Code - Uncle Bob;Still more subtle are the modules that have similar algorithms, but that don’t share similar lines of code. This is still duplication and should be addressed by using the TEMPLATE METHOD,4 or STRATEGY5 pattern."
+Clean Code - Uncle Bob;So this heuristic is here to remind us to consider polymorphism before using a switch.
+Clean Code - Uncle Bob;This is how architectures become rigid. Too many modules know too much about the architecture.
+Clean Code - Uncle Bob;Don’t use inheritance as a way to cheat the scoping rules of the language. Use a static import instead. Click here to view code image    import static PayrollConstants.*;
+"Clean Architecture - Uncle Bob;Not only does a good architecture meet the needs of its users, developers, and owners at a given point in time, but it also meets them over time."
+"Clean Architecture - Uncle Bob;Architecture is the decisions that you wish you could get right early in a project, but that you are not necessarily more likely to get them right than any other."
+"Clean Architecture - Uncle Bob;The measure of design quality is simply the measure of the effort required to meet the needs of the customer. If that effort is low, and stays low throughout the lifetime of the system, the design is good. If that effort grows with each new release, the design is bad. It’s as simple as that."
+"Clean Architecture - Uncle Bob;Of course, things never do get cleaned up later, because market pressures never abate."
+"Clean Architecture - Uncle Bob;The difficulty in making such a change should be proportional only to the scope of the change, and not to the shape of the change."
+"Clean Architecture - Uncle Bob;The more this architecture prefers one shape over another, the more likely new features will be harder and harder to fit into that structure."
+"Clean Architecture - Uncle Bob;Because we wrote lots of programs that were device dependent, only to discover that we really wanted those programs to do the same job but use a different device."
+"Clean Architecture - Uncle Bob;Note, however, that the source code dependency (the inheritance relationship) between ML1 and the interface I points in the opposite direction compared to the flow of control. This is called dependency inversion, and its implications for the software architect are profound."
+"Clean Architecture - Uncle Bob;With this approach, software architects working in systems written in OO languages have absolute control over the direction of all source code dependencies in the system."
+"Clean Architecture - Uncle Bob;It allows the architect to create a plugin architecture, in which modules that contain high-level policies are independent of modules that contain low-level details."
+"Clean Architecture - Uncle Bob;All race conditions, deadlock conditions, and concurrent update problems are due to mutable variables."
+"Clean Architecture - Uncle Bob;Event sourcing is a strategy wherein we store the transactions, but not the state. When state is required, we simply apply all the transactions from the beginning of time."
+"Clean Architecture - Uncle Bob;Also, because neither updates nor deletions occur in the data store, there cannot be any concurrent update issues."
+"Clean Architecture - Uncle Bob;A module should have one, and only one, reason to change."
+Clean Architecture - Uncle Bob;These arrows point toward the components that we want to protect from change.
+"Clean Architecture - Uncle Bob;If component A should be protected from changes in component B, then component B should depend on component A."
+Clean Architecture - Uncle Bob;Why should the Interactor hold such a privileged position? Because it contains the business rules.
+Clean Architecture - Uncle Bob;Transitive dependencies are a violation of the general principle that software entities should not depend on things they don’t directly use.
+"Clean Architecture - Uncle Bob;In general, it is harmful to depend on modules that contain more than you need."
+"Clean Architecture - Uncle Bob;In a statically typed language, like Java, this means that the use, import, and include statements should refer only to source modules containing interfaces, abstract classes, or some other kind of abstract declaration. Nothing concrete should be depended on."
+"Clean Architecture - Uncle Bob;Those are the modules that we are actively developing, and that are undergoing frequent change."
+"Clean Architecture - Uncle Bob;Indeed, good software designers and architects work hard to reduce the volatility of interfaces. They try to find ways to add functionality to implementations without making changes to the interfaces. This is Software Design 101."
+Clean Architecture - Uncle Bob;Never mention the name of anything concrete and volatile. This is really just a restatement of the principle itself.
+"Clean Architecture - Uncle Bob;Weak though the advice may be, the principle itself is important, because violations are easy to detect—they don’t “make sense.” If you violate the REP, your users will know, and they won’t be impressed with your architectural skills."
+Clean Architecture - Uncle Bob;Gather into components those classes that change for the same reasons and at the same times. Separate into different components those classes that change at different times and for different reasons.
+Clean Architecture - Uncle Bob;Gather together those things that change at the same times and for the same reasons. Separate those things that change at different times or for different reasons.
+"Clean Architecture - Uncle Bob;Put another way, we want to make sure that the classes that we put into a component are inseparable—that it is impossible to depend on some and not on the others."
+Clean Architecture - Uncle Bob;It is the perversity of software that a module that you have designed to be easy to change can be made difficult to change by someone else who simply hangs a dependency on it.
+Clean Architecture - Uncle Bob;A component should be as abstract as it is stable.
+Clean Architecture - Uncle Bob;Thus dependencies run in the direction of abstraction.
+"Clean Architecture - Uncle Bob;The strategy behind that facilitation is to leave as many options open as possible, for as long as possible."
+"Clean Architecture - Uncle Bob;The primary purpose of architecture is to support the life cycle of the system. Good architecture makes the system easy to understand, easy to develop, easy to maintain, and easy to deploy. The ultimate goal is to minimize the lifetime cost of the system and to maximize programmer productivity."
+Clean Architecture - Uncle Bob;What are the options that we need to leave open? They are the details that don’t matter.
+"Clean Architecture - Uncle Bob;I think you get the point. If you can develop the high-level policy without committing to the details that surround it, you can delay and defer decisions about those details for a long time. And the longer you wait to make those decisions, the more information you have with which to make them properly."
+Clean Architecture - Uncle Bob;A good architect maximizes the number of decisions not made.
+Clean Architecture - Uncle Bob;Any organization that designs a system will produce a design whose structure is a copy of the organization’s communication structure.
+"Clean Architecture - Uncle Bob;But there are different kinds of duplication. There is true duplication, in which every change to one instance necessitates the same change to every duplicate of that instance."
+"Clean Architecture - Uncle Bob;You may be tempted to simply pass the database record up to the UI, rather than to create a view model that looks the same and copy the elements across. Be careful: This duplication is almost certainly accidental."
+Clean Architecture - Uncle Bob;My preference is to push the decoupling to the point where a service could be formed.
+"Clean Architecture - Uncle Bob;A good architecture will allow a system to be born as a monolith, deployed in a single file, but then to grow into a set of independently deployable units, and then all the way to independent services and/or micro-services. Later, as things change, it should allow for reversing that progression and sliding all the way back down into a monolith."
+Clean Architecture - Uncle Bob;You draw lines between things that matter and things that don’t.
+Clean Architecture - Uncle Bob;Note the direction of the arrow. The Database knows about the BusinessRules. The BusinessRules do not know about the Database.
+"Clean Architecture - Uncle Bob;Threads are not architectural boundaries or units of deployment, but rather a way to organize the schedule and order of execution."
+"Clean Architecture - Uncle Bob;A strict definition of “level” is “the distance from the inputs and outputs.” The farther a policy is from both the inputs and the outputs of the system, the higher its level."
+"Clean Architecture - Uncle Bob;We shall call these rules Critical Business Rules, because they are critical to the business itself, and would exist even if there were no system to automate them."
+Clean Architecture - Uncle Bob;Some of you may be concerned that I called it a class. Don’t be. You don’t need to use an object-oriented language to create an Entity. All that is required is that you bind the Critical Business Data and the Critical Business Rules together in a single and separate software module.
+Clean Architecture - Uncle Bob;A use case describes application-specific business rules as opposed to the Critical Business Rules within the Entities.
+"Clean Architecture - Uncle Bob;This is very important. Use cases do not describe how the system appears to the user. Instead, they describe the application-specific rules that govern the interaction between the users and the Entities."
+"Clean Architecture - Uncle Bob;Why are Entities high level and use cases lower level? Because use cases are specific to a single application and, therefore, are closer to the inputs and outputs of that system. Entities are generalizations that can be used in many different applications, so they are farther from the inputs and outputs of the system. Use cases depend on Entities; Entities do not depend on use cases."
+"Clean Architecture - Uncle Bob;Frameworks are tools to be used, not architectures to be conformed to. If your architecture is based on frameworks, then it cannot be based on your use cases."
+"Clean Architecture - Uncle Bob;Other authors who write about the framework also tend to be disciples of the true belief. They show you the way to use the framework. Often they assume an all-encompassing, all-pervading, let-the-framework-do-everything position. This is not the position you want to take."
+"Clean Architecture - Uncle Bob;The important thing is that isolated, simple data structures are passed across the boundaries. We don’t want to cheat and pass Entity objects or database rows."
+"Clean Architecture - Uncle Bob;Anything and everything that appears on the screen, and that the application has some kind of control over, is represented in the View Model as a string, or a boolean, or an enum. Nothing is left for the View to do other than to load the data from the View Model into the screen. Thus the View is humble."
+"Clean Architecture - Uncle Bob;This kind of anticipatory design is often frowned upon by many in the Agile community as a violation of YAGNI: “You Aren’t Going to Need It.” Architects, however, sometimes look at the problem and think, “Yeah, but I might.” In that case, they may implement a partial boundary."
+Clean Architecture - Uncle Bob;The role of the testing API is to hide the structure of the application from the tests. This allows the production code to be refactored and evolved in ways that don’t affect the tests. It also allows the tests to be refactored and evolved in ways that don’t affect the production code.
