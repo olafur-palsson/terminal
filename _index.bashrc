@@ -59,7 +59,7 @@ alias sobash=". ~/.bashrc"
 alias seeya='systemctl hibernate'
 
 ## Shut down
-alias bye='sudo shutdown now'
+alias bye='systemctl poweroff'
 
 template() {
   xclip -sel c < ~/.code-templates/$1

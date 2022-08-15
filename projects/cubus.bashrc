@@ -91,6 +91,7 @@ brak() {
 	cubeshop "$CUBUS/BrakVinVendor" "CubeShop/BrakVinClientApp" "$@"
 }
 
+alias hj="halldor"
 halldor() {
 	cubeshop "$CUBUS/Halldor2021" "HalldorClientApp" "$@"
 }
