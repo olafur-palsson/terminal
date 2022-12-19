@@ -92,3 +92,17 @@ watch_do() {
       echo "$file" | grep -Eq "$regex" && eval "$cmd"
     done
 }
+
+unthrottle_wifi() {
+  sudo wondershaper wlp0s20f3 clear
+}
+
+throttle_wifi() {
+  local num=$1
+  if [[ -z "$num" ]]
+  then
+    local num=1
+  fi
+  sudo wondershaper wlp0s20f3 $(( $num * 1024 )) $(( $num * 256))
+}
+

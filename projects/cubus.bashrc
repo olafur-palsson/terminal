@@ -1,6 +1,8 @@
 var CUBUS "/home/oli/projects"
 var SQL_VOGUE "data source=DESKTOP-G5OK21D\SQLEXPRESS02;initial catalog=master;trusted_connection=true"
 
+var NODE_OPTIONS --max_old_space_size=8048
+
 sql_vogue() {
   echo 'sqlcmd -S DESKTOP-G5OK21D\SQLEXPRESS02 -E'
 }
@@ -56,7 +58,7 @@ cunexttask() {
 }
 
 ghtoken() {
-  cat ~/githubtoken | clipboard
+  cat ~/.no_move_these/githubtoken | clipboard
 }
 
 ab() {
@@ -106,6 +108,14 @@ bpro() {
 
 ntc() {
 	cubeshop "$CUBUS/NtcVendor" "NtcClientApp" "$@"
+}
+
+gap() {
+	cubeshop "$CUBUS/GapVendor" "GapClientApp" "$@"
+}
+
+vendor() {
+	cubeshop "$CUBUS/CubeShop" "FrontendClientApp" "$@"
 }
 
 cubeshop() {
