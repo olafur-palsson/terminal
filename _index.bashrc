@@ -43,6 +43,7 @@ path() {
 import "$TERMINAL/init"
 import "$TERMINAL/os"
 import "$TERMINAL/languages"
+import "$TERMINAL/starship"
 
 # Load bash apps and project specific bash
 import "$TERMINAL/apps/_index"

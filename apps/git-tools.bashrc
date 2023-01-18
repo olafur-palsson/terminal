@@ -3,6 +3,13 @@ g-log() {
   echo "$current-time | $0" >> ~/.git-log
 }
 
+pr() {
+  local origin=`git remote show origin | grep github | head -1 | grep -o "https.*"`
+  local branch=`git branch --show-current`
+  local prlink="$origin/pull/new/$branch"
+  firefox $prlink
+}
+
 
 g-rebase-branch() {
   if [ -z "$1" ]

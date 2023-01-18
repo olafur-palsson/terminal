@@ -13,6 +13,24 @@ alias ch="git checkout"
 # git status shortcut
 alias st="git status"
 
+# Get recent branches, copy ref to clipboard
+refc() {
+  if [ -z "$1" ]; then
+    git reflog | grep -oe "[0-9]\{8\}[^ ]\+" > /tmp/temp && tac /tmp/temp | cat -n
+  else
+    local re='^[0-9]+$'
+    if ! [[ "$1" =~ $re ]] ; then
+      local branch=$(git reflog | grep -oe "[0-9]\{8\}[^ ]\+" > /tmp/temp && tac /tmp/temp | grep -e "$1" | tail -1)
+      echo -n $branch | xclip -selection clipboard
+    else
+      local branch=$(git reflog | grep -oe "[0-9]\{8\}[^ ]\+" > /tmp/temp && tac /tmp/temp | sed -n "$1"p)
+      echo -n $branch | xclip -selection clipboard
+    fi
+    #local branch=$(git reflog | grep -oe "[0-9]\{8\}[^ ]\+" > /tmp/temp && tac /tmp/temp | sed -n "$1"p)
+    #ch $branch
+  fi
+}
+
 # Get recent branches, navigate by number
 ref() {
   if [ -z "$1" ]; then
