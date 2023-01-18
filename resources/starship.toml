@@ -1,0 +1,16 @@
+format = "$all"
+
+[dotnet]
+symbol = '🎯'
+style = 'green'
+heuristic = false
+format = '[$symbol($tfm )]($style)'
+
+[nodejs]
+format = '[$symbol$version](bold green) '
+
+[aws]
+format = ''
+
+[openstack]
+format = ''

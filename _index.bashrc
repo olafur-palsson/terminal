@@ -66,3 +66,7 @@ template() {
   xclip -sel c < ~/.code-templates/$1
 }
 
+term() {
+  nvim $TERMINAL
+}
+
