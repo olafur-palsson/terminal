@@ -62,6 +62,22 @@ alias seeya='systemctl hibernate'
 ## Shut down
 alias bye='systemctl poweroff'
 
+shsetup() {
+  banner "Add following to bash install.sh?"
+  xclip -o | cat
+  local comment=`gum confirm "?" && \
+    gum input --cursor.foreground "#FF0" --prompt.foreground "#0FF" --prompt "#" \
+      --placeholder "Comment" --width 80`
+  if [ -z "$comment" ]
+  then
+    echo "Aborted, no comment"
+  else
+    echo "# $comment" >> "$TERMINAL/install.sh"
+    xclip -o >> "$TERMINAL/install.sh"
+    echo "Done"
+  fi
+}
+
 template() {
   xclip -sel c < ~/.code-templates/$1
 }

@@ -42,6 +42,7 @@ ref() {
       | xargs gum choose`
     echo $branch
     if [ -z "$branch"]; then
+      echo "No branch"
     else
       ch $branch
     fi
