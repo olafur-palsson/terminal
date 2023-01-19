@@ -39,9 +39,9 @@ ref() {
       |    sed -e 's/checkout: moving from //' -e 's/ to $//' \
       | grep -ve "[a-f0-9]\{20\}" \
       | uniq \
-      | xargs gum choose`
+      | gum filter`
     echo $branch
-    if [ -z "$branch"]; then
+    if [ -z "$branch" ]; then
       echo "No branch"
     else
       ch $branch
