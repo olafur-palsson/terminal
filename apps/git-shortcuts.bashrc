@@ -31,8 +31,28 @@ refc() {
   fi
 }
 
-# Get recent branches, navigate by number
 ref() {
+  if [ -z "$1" ]; then
+    banner "Pick branch"
+    local branch=`git reflog \
+      | grep -o "checkout: moving from .* to " \
+      |    sed -e 's/checkout: moving from //' -e 's/ to $//' \
+      | grep -ve "[a-f0-9]\{20\}" \
+      | uniq \
+      | xargs gum choose`
+    echo $branch
+    if [ -z "$branch"]; then
+    else
+      ch $branch
+    fi
+  else
+    local branch=$(git reflog | grep -oe "[0-9]\{8\}[^ ]\+" > /tmp/temp && tac /tmp/temp | sed -n "$1"p)
+    ch $branch
+  fi
+}
+
+# Get recent branches, navigate by number
+ref2() {
   if [ -z "$1" ]; then
     git reflog | grep -oe "[0-9]\{8\}[^ ]\+" > /tmp/temp && tac /tmp/temp | cat -n
   else
