@@ -70,6 +70,11 @@ ref2() {
   fi
 }
 
+merge() {
+  local filename=`st | grep "$1" | grep -oh "[ ][^ ]*$" | head -1`
+  lvim $filename
+}
+
 # git ammend no edit shortcut
 alias am="git commit --amend --no-edit"
 

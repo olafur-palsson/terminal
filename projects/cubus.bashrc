@@ -12,6 +12,42 @@ endwork() {
   uptime -s | xargs ts-node "$CUBUS/harvest/logTimeToHarvest.ts" && sleep 0.5 && systemctl poweroff
 }
 
+alias day_of_the_week="date +%u -d"
+weekdays_current_month() {
+  local startdate=`date +%Y-%m-01`
+  local enddate=`date -d "$startdate +1 month" +%Y-%m-01`
+  local count=0
+
+  while [ "$startdate" != "$enddate" ]; do 
+    local dow=`day_of_the_week $startdate`
+    if [ "$dow" -lt 6 ]; then
+      count=$(($count + 1))
+    fi
+    startdate=$(date -I -d "$startdate + 1 day")
+  done
+  echo $count
+}
+
+hours_to_work_per_day() {
+  local days=`weekdays_current_month`
+  echo -e "import math \nprint(str(math.floor(120 / $days)) + ':' + str(round((120 / $days - 5) * 60)))" | python3
+}
+
+cubadd() {
+  cd ~/projects/
+  git clone "https://github.com/Fannsker/$1"
+  cd CubeShop
+  local clientApp=`ls -1 | grep ClientApp | head -1`
+  cd $clientApp
+  npm i --legacy-peer-deps && npm start
+}
+
+hours_to_work_per_week() {
+  local days=`weekdays_current_month`
+  local result=`echo -e "import math \nprint(str(math.floor(600 / $days)) + ':' + str(round((600 / $days - 5) * 60)))" | python3` 
+  echo $result | cut -c-5
+}
+
 cucommit() {
   cd `git rev-parse --show-toplevel`
   git add .
@@ -62,68 +98,106 @@ ghtoken() {
 }
 
 ab() {
-  cubeshop "$CUBUS/ABVendor" "CubeShop/ABVendorClientApp" "$@"
+  cubusstack "$CUBUS/ABVendor" "CubeShop/ABVendorClientApp" "CubeShop.sln" "$@"
 }
 
 rekkjan() {
-	cubeshop "$CUBUS/RekkjanVendor" "RekkjanVendorClientApp" "$@"
+	cubusstack "$CUBUS/RekkjanVendor" "RekkjanVendorClientApp" "CubeShop.sln" "$@"
 }
 
 sekkur() {
-	cubeshop "$CUBUS/SekkurVendor" "SekkurVendorClientApp" "$@"
+	cubusstack "$CUBUS/SekkurVendor" "SekkurVendorClientApp" "CubeShop.sln" "$@"
 }
 
 regalo() {
-	cubeshop "$CUBUS/Regalo" "RegaloClientApp" "$@"
+	cubusstack "$CUBUS/Regalo" "RegaloClientApp" "CubeShop.sln" "$@"
 }
 
 bilanaust() {
-	cubeshop "$CUBUS/BilanaustVendor" "CubeShop/BilanaustVendorClientApp" "$@"
+	cubusstack "$CUBUS/BilanaustVendor" "CubeShop/BilanaustVendorClientApp" "CubeShop.sln" "$@"
 }
 
 tri() {
-	cubeshop "$CUBUS/TriWebShop" "TriWebShopClientApp" "$@"
+	cubusstack "$CUBUS/TriWebShop" "TriWebShopClientApp" "CubeShop.sln" "$@"
 }
 
 vogue() {
-	cubeshop "$CUBUS/VogueVendor" "VogueVendorClientApp" "$@"
+	cubusstack "$CUBUS/VogueVendor" "VogueVendorClientApp" "CubeShop.sln" "$@"
 }
 
 brak() {
-	cubeshop "$CUBUS/BrakVinVendor" "CubeShop/BrakVinClientApp" "$@"
+	cubusstack "$CUBUS/BrakVinVendor" "CubeShop/BrakVinClientApp" "CubeShop.sln" "$@"
 }
 
 alias hj="halldor"
 halldor() {
-	cubeshop "$CUBUS/Halldor2021" "HalldorClientApp" "$@"
+	cubusstack "$CUBUS/Halldor2021" "HalldorClientApp" "CubeShop.sln" "$@"
 }
 
 solar() {
-	cubeshop "$CUBUS/SolarVendor" "SolarVendorClientApp" "$@"
+	cubusstack "$CUBUS/SolarVendor" "SolarVendorClientApp" "CubeShop.sln" "$@"
 }
 
 bpro() {
-	cubeshop "$CUBUS/BProVendor" "BProClientApp" "$@"
+	cubusstack "$CUBUS/BProVendor" "BProClientApp" "CubeShop.sln" "$@"
 }
 
 ntc() {
-	cubeshop "$CUBUS/NtcVendor" "NtcClientApp" "$@"
+	cubusstack "$CUBUS/NtcVendor" "NtcClientApp" "CubeShop.sln" "$@"
 }
 
 gap() {
-	cubeshop "$CUBUS/GapVendor" "GapClientApp" "$@"
+	cubusstack "$CUBUS/GapVendor" "GapClientApp" "CubeShop.sln" "$@"
+}
+
+rarik() {
+	cubusstack "$CUBUS/Rarik" "ClientApp" "MyPages2023.sln" "$@"
 }
 
 vendor() {
-	cubeshop "$CUBUS/CubeShop" "FrontendClientApp" "$@"
+	cubusstack "$CUBUS/CubeShop" "FrontendClientApp" "CubeShop.sln" "$@"
 }
 
-cubeshop() {
+
+cubelog() {
+  cat ~/project-log.txt | awk 'NR % 4 == 0' 
+}
+
+cubusstack() {
+	local root="$1"
+	local webapproot="$2"
+  local solutionName="$3"
+  local command="$4"
+  echo "Root: $root, $webapproot, Sln: $solutionName, Cmd: $command"
+	cd "$root"
+  node "$TERMINAL/scripts/project-logger.js" "$webapproot" "$command" >> ~/project-log.txt
+
+  echo "Executing $command"
+	if [ ! -z "$command" ]; then
+	    cd "$webapproot"
+	    if [ "$command" = "storm" ]; then
+	    	nohup webstorm . & echo "Webstorm for $webapproot started"
+	    elif [ "$command" = "all" ]; then
+	    	eval "cubusstack $root $webapproot $solutionName storm"
+	    	eval "cubusstack $root $webapproot $solutionName ride"
+	    	eval "cubusstack $root $webapproot $solutionName start"
+	    elif [ "$command" = "ride" ]; then
+	    	cd -
+	    	nohup rider "$solutionName" & echo "Rider for $root started"
+	    else
+	        echo "npm ${@: 4}"
+	        eval "npm ${@: 4}"
+	    fi
+	fi
+}
+
+cubeshop2() {
 	local command="$0"
 	local root="$1"
 	local webapproot="$2"
 	shift 2
 	cd "$root"
+  node "$TERMINAL/scripts/project-logger.js" "$webapproot" "$1" >> ~/project-log.txt
 
 	if [ ! -z "$1" ]; then
 	    cd "$webapproot"
@@ -142,4 +216,5 @@ cubeshop() {
 	    fi
 	fi
 }
+
 

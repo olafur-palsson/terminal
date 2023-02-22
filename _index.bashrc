@@ -22,6 +22,10 @@ import() {
   fi
 }
 
+wow() {
+  node "$TERMINAL/scripts/yOlO.js" "$@" | xclip -selection clipboard
+}
+
 ## Import override skipping .bashrc ending
 import_verbatim() {
   import $1 --override
@@ -38,6 +42,8 @@ path() {
   PATH="$PATH:$1"
 }
 
+#bin
+path "/home/oli/.local/bin"
 
 # Load .bashrc here
 import "$TERMINAL/init"
