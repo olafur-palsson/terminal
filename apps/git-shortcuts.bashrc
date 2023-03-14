@@ -1,3 +1,4 @@
+#!/bin/bash
 ## Git
 
 # Hard reset to latest changes

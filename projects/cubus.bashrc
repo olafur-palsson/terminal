@@ -158,6 +158,40 @@ vendor() {
 	cubusstack "$CUBUS/CubeShop" "FrontendClientApp" "CubeShop.sln" "$@"
 }
 
+pascal-camel() {
+  echo "${1^}"
+}
+
+camel-pascal() {
+  echo "${1,}"
+}
+
+camel-kebab() {
+  sed --expression 's/\([A-Z]\)/-\L\1/g' \
+      --expression 's/^-//'              \
+      <<< "$1"
+}
+
+copy-replace() {
+  echo $1
+  if [[ -z "$1" ]]; then
+    echo "Error, no string"
+    return 1
+  fi
+
+  camel=`pascal-camel $1`
+  kebab=`camel-kebab $camel`
+  pascal=`camel-pascal $1`
+  mkdir $kebab
+  cp template/* $kebab
+  cd $kebab
+  ls -1 | xargs sed -i "s/TemplateString/$camel/g"
+  ls -1 | xargs sed -i "s/templateString/$pascal/g"
+  ls -1 | xargs sed -i "s/template-string/$kebab/g"
+  for f in *; do mv "$f" "$(echo "$f" | sed s/template-string/$kebab/)"; done
+  cd ..
+}
+
 
 cubelog() {
   cat ~/project-log.txt | awk 'NR % 4 == 0' 

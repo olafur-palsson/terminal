@@ -45,6 +45,24 @@ redo() {
   eval "$a"
 }
 
+redo2() {
+  banner "Pick command"
+  local command=`history \
+    | sed -e "s/[0-9]\+  [0-9-]\+T[0-9:]\{8\} //g" \
+    | uniq \
+    | gum filter`
+  # local command=`history \
+  #   | 
+  #   | uniq \
+  #   | gum filter`
+  if [ -z "$command" ]; then
+    echo "No command"
+  else
+    echo "Executing $command"
+    `$command`
+  fi
+}
+
 # Update and upgrade all
 alias update='pkcon update -y'
 
