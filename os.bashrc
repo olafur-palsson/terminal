@@ -59,7 +59,7 @@ redo() {
     echo "No command"
   else
     echo "Executing $command"
-    `$command`
+    eval $command
   fi
 }
 
