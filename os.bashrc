@@ -40,12 +40,12 @@ refresh_process() {
   fi
 }
 
-redo() {
+redo2() {
   local a=$(history | grep "^\s$1" | cut --delimiter=" " -f 5-)
   eval "$a"
 }
 
-redo2() {
+redo() {
   banner "Pick command"
   local command=`history \
     | sed -e "s/[0-9]\+  [0-9-]\+T[0-9:]\{8\} //g" \
