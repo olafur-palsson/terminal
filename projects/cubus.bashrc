@@ -1,3 +1,5 @@
+#!/bin/bash
+
 var CUBUS "/home/oli/projects"
 var SQL_VOGUE "data source=DESKTOP-G5OK21D\SQLEXPRESS02;initial catalog=master;trusted_connection=true"
 
@@ -151,7 +153,12 @@ gap() {
 }
 
 rarik() {
-	cubusstack "$CUBUS/Rarik" "ClientApp" "MyPages2023.sln" "$@"
+
+  if [ "$1" = "start" ]; then
+    cubusstack "$CUBUS/Rarik" "ClientApp" "MyPages2023.sln" start -- -- --port "8080"
+  else
+    cubusstack "$CUBUS/Rarik" "ClientApp" "MyPages2023.sln" "$@"
+  fi
 }
 
 vendor() {
@@ -192,6 +199,9 @@ copy-replace() {
   cd ..
 }
 
+cutunnel() {
+  ngrok http https://localhost:5001
+}
 
 cubelog() {
   cat ~/project-log.txt | awk 'NR % 4 == 0' 
@@ -201,7 +211,7 @@ cubusstack() {
 	local root="$1"
 	local webapproot="$2"
   local solutionName="$3"
-  local command="$4"
+  local command="${@: 4}"
   echo "Root: $root, $webapproot, Sln: $solutionName, Cmd: $command"
 	cd "$root"
   node "$TERMINAL/scripts/project-logger.js" "$webapproot" "$command" >> ~/project-log.txt
@@ -211,6 +221,14 @@ cubusstack() {
 	    cd "$webapproot"
 	    if [ "$command" = "storm" ]; then
 	    	nohup webstorm . & echo "Webstorm for $webapproot started"
+	    elif [ "$command" = "startup" ]; then
+	    	nohup slack & echo "Slack started"
+	    	nohup spotify & echo "Spotify started"
+	    	nohup datagrip & echo "Spotify started"
+	    	nohup birdtray & echo "Thunderbird started"
+	    	nohup surfshark & echo "Surfshark started"
+        nohup sh -c 'XAPP_FORCE_GTKWINDOW_ICON=/home/oli/Data/Downloads/asana-logo-favicon@3x.png firefox --class WebApp-Asana7446 --profile /home/oli/.local/share/ice/firefox/Asana7446 --no-remote http://asana.com' & echo "Asana started"
+	    	eval "cubusstack $root $webapproot $solutionName all"
 	    elif [ "$command" = "all" ]; then
 	    	eval "cubusstack $root $webapproot $solutionName storm"
 	    	eval "cubusstack $root $webapproot $solutionName ride"
@@ -224,31 +242,4 @@ cubusstack() {
 	    fi
 	fi
 }
-
-cubeshop2() {
-	local command="$0"
-	local root="$1"
-	local webapproot="$2"
-	shift 2
-	cd "$root"
-  node "$TERMINAL/scripts/project-logger.js" "$webapproot" "$1" >> ~/project-log.txt
-
-	if [ ! -z "$1" ]; then
-	    cd "$webapproot"
-	    if [ "$1" = "storm" ]; then
-	    	nohup webstorm . & echo "Webstorm for $webapproot started"
-	    elif [ "$1" = "all" ]; then
-	    	eval "cubeshop $root $webapproot storm"
-	    	eval "cubeshop $root $webapproot ride"
-	    	eval "cubeshop $root $webapproot start"
-	    elif [ "$1" = "ride" ]; then
-	    	cd -
-	    	nohup rider CubeShop.sln & echo "Rider for $root started"
-	    else
-	        echo "npm ${@: 1}"
-	        eval "npm ${@: 1}"
-	    fi
-	fi
-}
-
 

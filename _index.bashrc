@@ -88,8 +88,13 @@ template() {
   xclip -sel c < ~/.code-templates/$1
 }
 
+
 term() {
-  nvim $TERMINAL
+  cd $TERMINAL
+}
+
+eterm() {
+  lvim $TERMINAL
 }
 
 # For ui

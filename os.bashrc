@@ -48,6 +48,7 @@ redo2() {
 redo() {
   banner "Pick command"
   local command=`history \
+    | sort -rn \
     | sed -e "s/[0-9]\+  [0-9-]\+T[0-9:]\{8\} //g" \
     | uniq \
     | gum filter`

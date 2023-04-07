@@ -14,6 +14,9 @@ alias ch="git checkout"
 # git status shortcut
 alias st="git status"
 
+# git commit
+alias c="git commit -m"
+
 # Get recent branches, copy ref to clipboard
 refc() {
   if [ -z "$1" ]; then
