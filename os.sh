@@ -21,6 +21,13 @@ disk_use() {
   du -h --max-depth=1 | sort -rh
 }
 
+# foreach file in dir
+foreach-file() {
+  for file in .; do
+    echo $@
+  done
+}
+
 # Kill process by regex expression
 killregex() {
   ps -Alf |grep -i $1 |grep -v grep |awk -F' ' '{print $4}' |xargs kill -9
