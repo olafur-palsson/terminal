@@ -17,6 +17,8 @@ alias st="git status"
 # git commit
 alias c="git commit -m"
 
+alias clone="cd ~/projects/; git clone"
+
 # Get recent branches, copy ref to clipboard
 refc() {
   if [ -z "$1" ]; then
@@ -75,7 +77,8 @@ ref2() {
 }
 
 merge() {
-  local filename=`st | grep "$1" | grep -oh "[ ][^ ]*$" | head -1`
+  local filename=`st | grep "$1" | grep -oh "[ ][^ ]*$" | tail -1`
+  git add $filename
   lvim $filename
 }
 

@@ -93,6 +93,7 @@ killregex() {
   ps -Alf |grep -i $1 |grep -v grep |awk -F' ' '{print $4}' |xargs kill -9
 }
 
+alias formatjsonclipboard="clipboard | jq | clipboard"
 
 # Search history of bash
 alias searchhistory="history | grep"

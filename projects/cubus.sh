@@ -9,9 +9,15 @@ sql_vogue() {
   echo 'sqlcmd -S DESKTOP-G5OK21D\SQLEXPRESS02 -E'
 }
 
+hours_remaining() {
+  export NODE_NO_WARNINGS=1 
+  uptime -s | xargs node "$CUBUS/harvest/hoursWorkedHarvest.js"
+}
+
 endwork() {
   echo "Logging time..."
-  uptime -s | xargs ts-node "$CUBUS/harvest/logTimeToHarvest.ts" && sleep 0.5 && systemctl poweroff
+  export NODE_NO_WARNINGS=1 
+  uptime -s | xargs node "$CUBUS/harvest/logTimeToHarvest.js" && sleep 0.5 # && systemctl poweroff
 }
 
 alias day_of_the_week="date +%u -d"
@@ -32,7 +38,7 @@ weekdays_current_month() {
 
 hours_to_work_per_day() {
   local days=`weekdays_current_month`
-  echo -e "import math \nprint(str(math.floor(120 / $days)) + ':' + str(round((120 / $days - 5) * 60)))" | python3
+  echo -e "import math \nprint(str(math.floor(120 / $days)) + ':' + str(round((120 / $days - 5) * 60) % 60))" | python3
 }
 
 cubadd() {
@@ -120,24 +126,37 @@ bilanaust() {
 }
 
 tri() {
-	cubusstack "$CUBUS/TriWebShop" "TriWebShopClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/Tri2024" "TriClientApp" "CubeShop.sln" "$@"
 }
 
 vogue() {
 	cubusstack "$CUBUS/VogueVendor" "VogueVendorClientApp" "CubeShop.sln" "$@"
 }
 
+azmedica() {
+	cubusstack "$CUBUS/AzMedica2021" "AzMedicaClientApp" "CubeShop.sln" "$@"
+}
+
 brak() {
 	cubusstack "$CUBUS/BrakVinVendor" "CubeShop/BrakVinClientApp" "CubeShop.sln" "$@"
 }
 
+alias hj21="halldor21"
+halldor21() {
+	cubusstack "$CUBUS/Halldor2021" "HalldorClientApp" "CubeShop.sln" "$@"
+}
+
 alias hj="halldor"
 halldor() {
-	cubusstack "$CUBUS/Halldor2021" "HalldorClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/Halldor2023" "HalldorClientApp" "CubeShop.sln" "$@"
 }
 
 solar() {
 	cubusstack "$CUBUS/SolarVendor" "SolarVendorClientApp" "CubeShop.sln" "$@"
+}
+
+adidas() {
+	cubusstack "$CUBUS/AdidasVendor" "AdidasClientApp" "CubeShop.sln" "$@"
 }
 
 bpro() {
@@ -148,12 +167,15 @@ ntc() {
 	cubusstack "$CUBUS/NtcVendor" "NtcClientApp" "CubeShop.sln" "$@"
 }
 
+skorri() {
+	cubusstack "$CUBUS/SkorriVendor" "SkorriVendorClientApp" "CubeShop.sln" "$@"
+}
+
 gap() {
 	cubusstack "$CUBUS/GapVendor" "GapClientApp" "CubeShop.sln" "$@"
 }
 
 rarik() {
-
   if [ "$1" = "start" ]; then
     cubusstack "$CUBUS/Rarik" "ClientApp" "MyPages2023.sln" start -- -- --port "8080"
   else
@@ -161,8 +183,16 @@ rarik() {
   fi
 }
 
+ms() {
+  cubusstack "$CUBUS/MsVendor" "MsClientApp" "CubeShop.sln" "$@"
+}
+
 vendor() {
-	cubusstack "$CUBUS/CubeShop" "FrontendClientApp" "CubeShop.sln" "$@"
+  if [ "$1" = "start" ]; then
+    cubusstack "$CUBUS/SalesVendor" "SalesClientApp" "SalesVendor.sln" start -- -- --port "8080"
+  else
+	  cubusstack "$CUBUS/SalesVendor" "SalesClientApp" "SalesVendor.sln" "$@"
+  fi
 }
 
 pascal-camel() {
@@ -199,8 +229,16 @@ copy-replace() {
   cd ..
 }
 
+efmigrate() {
+  dotnet ef migrations add "$1" && dotnet ef database update
+}
+
 cutunnel() {
   ngrok http https://localhost:5001
+}
+
+harvestTime() {
+  node ~/projects/harvest/index.js
 }
 
 cubelog() {
@@ -222,7 +260,7 @@ cubusstack() {
 	    if [ "$command" = "storm" ]; then
 	    	nohup webstorm . & echo "Webstorm for $webapproot started"
 	    elif [ "$command" = "startup" ]; then
-	    	nohup slack & echo "Slack started"
+	    	nohup slack --enable-features=WebRTCPipeWireCapturer & echo "Slack started"
 	    	nohup spotify & echo "Spotify started"
 	    	nohup datagrip & echo "Spotify started"
 	    	nohup birdtray & echo "Thunderbird started"
