@@ -19,6 +19,15 @@ alias c="git commit -m"
 
 alias clone="cd ~/projects/; git clone"
 
+pr() {
+  local origin=`git config --get remote.origin.url`
+  local branch=`git branch --show-current`
+  # https://github.com/Fannsker/Tri2024/pull/new/20231107-TvgSpecialPrice
+  local url="$origin/pull/new/$branch"
+  echo "$url"
+  firefox $url
+}
+
 # Get recent branches, copy ref to clipboard
 refc() {
   if [ -z "$1" ]; then

@@ -9,15 +9,24 @@ sql_vogue() {
   echo 'sqlcmd -S DESKTOP-G5OK21D\SQLEXPRESS02 -E'
 }
 
+hours_stats() {
+  export NODE_NO_WARNINGS=1 
+  uptime -s | xargs node "$CUBUS/harvest/stats.js"
+}
+
 hours_remaining() {
   export NODE_NO_WARNINGS=1 
   uptime -s | xargs node "$CUBUS/harvest/hoursWorkedHarvest.js"
 }
 
+log_time() {
+  uptime -s | xargs node "$CUBUS/harvest/logTimeToHarvest.js" 
+}
+
 endwork() {
   echo "Logging time..."
   export NODE_NO_WARNINGS=1 
-  uptime -s | xargs node "$CUBUS/harvest/logTimeToHarvest.js" && sleep 0.5 # && systemctl poweroff
+  log_time && sleep 0.5 && systemctl poweroff
 }
 
 alias day_of_the_week="date +%u -d"
@@ -123,6 +132,10 @@ regalo() {
 
 bilanaust() {
 	cubusstack "$CUBUS/BilanaustVendor" "CubeShop/BilanaustVendorClientApp" "CubeShop.sln" "$@"
+}
+
+tri21() {
+	cubusstack "$CUBUS/TriWebShop" "TriWebShopClientApp" "CubeShop.sln" "$@"
 }
 
 tri() {
@@ -275,8 +288,8 @@ cubusstack() {
 	    	cd -
 	    	nohup rider "$solutionName" & echo "Rider for $root started"
 	    else
-	        echo "npm ${@: 4}"
-	        eval "npm ${@: 4}"
+	        echo "bun ${@: 4}"
+	        eval "bun ${@: 4}"
 	    fi
 	fi
 }

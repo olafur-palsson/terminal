@@ -14,6 +14,15 @@ backlight() {
   sudo sh -c "echo $b > /sys/class/backlight/intel_backlight/brightness"
 }
 
+math () {
+  local expression="$@"
+  awk "BEGIN { print $expression }"
+}
+
+portuse() {
+  lsof -i ":$1"
+}
+
 alias search_files="grep -rnw . -e"
 
 # Show disk usage of each folder in a folder
