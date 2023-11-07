@@ -5,6 +5,10 @@ starcraft2() {
   flatpak run com.blizzard.StarCraft2
 }
 
+keymapus() {
+  setxkbmap us
+}
+
 crusaderkings3() {
   setxkbmap us
   steam steam://rungameid/1158310

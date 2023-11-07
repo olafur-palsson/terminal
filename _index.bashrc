@@ -7,22 +7,22 @@
 
 
 ## Import file with 'import "$TERMINAL/path" to import "path.bashrc"'
-# import() {
-#   suffix='.bashrc'
-#   file_name="$1$suffix"
-#   if [ -f $file_name ]
-#   then
-#     . $file_name
-#   else
-#     if [ -f $1 ]
-#     then
-#       . $1
-#     else
-#       echo "ImportError: $file_name"
-#     fi
-#   fi
-# }
 . "$TERMINAL/lib/oo-bootstrap.sh"
+import2() {
+  suffix='.sh'
+  file_name="$1$suffix"
+  if [ -f $file_name ]
+  then
+    . $file_name
+  else
+    if [ -f $1 ]
+    then
+      . $1
+    else
+      echo "ImportError: $file_name"
+    fi
+  fi
+}
 
 wow() {
   node "$TERMINAL/scripts/yOlO.js" "$@" | xclip -selection clipboard
@@ -46,6 +46,7 @@ path() {
 
 #bin
 path "/home/oli/.local/bin"
+path "/home/oli/.cargo/bin"
 
 # Load .bashrc here
 import "$TERMINAL/init"
@@ -55,7 +56,7 @@ import "$TERMINAL/languages"
 
 # Load bash apps and project specific bash
 import "$TERMINAL/apps/_index"
-# import "$TERMINAL/projects/_index"
+import "$TERMINAL/projects/_index"
 
 var EDITOR nvim
 var PYTHON_STARTUP "$HOME/.pythonrc"

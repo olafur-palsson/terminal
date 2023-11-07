@@ -10,6 +10,7 @@ pr() {
   firefox $prlink
 }
 
+alias clone="git clone ~/projects/$1"
 
 g-rebase-branch() {
   if [ -z "$1" ]

@@ -14,6 +14,15 @@ backlight() {
   sudo sh -c "echo $b > /sys/class/backlight/intel_backlight/brightness"
 }
 
+math () {
+  local expression="$@"
+  awk "BEGIN { print $expression }"
+}
+
+portuse() {
+  lsof -i ":$1"
+}
+
 alias search_files="grep -rnw . -e"
 
 # Show disk usage of each folder in a folder
@@ -93,6 +102,7 @@ killregex() {
   ps -Alf |grep -i $1 |grep -v grep |awk -F' ' '{print $4}' |xargs kill -9
 }
 
+alias formatjsonclipboard="clipboard | jq | clipboard"
 
 # Search history of bash
 alias searchhistory="history | grep"
