@@ -14,6 +14,10 @@ backlight() {
   sudo sh -c "echo $b > /sys/class/backlight/intel_backlight/brightness"
 }
 
+iswayland() {
+  echo $XDG_SESSION_TYPE
+}
+
 math () {
   local expression="$@"
   awk "BEGIN { print $expression }"
