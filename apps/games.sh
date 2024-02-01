@@ -1,5 +1,10 @@
 #!/bin/bash
 
+rungameid() {
+  flatpak run com.valvesoftware.Steam "steam://rungameid/$1"
+}
+
+
 starcraft2() {
   setxkbmap us
   flatpak run com.blizzard.StarCraft2
@@ -9,17 +14,25 @@ keymapus() {
   setxkbmap us
 }
 
+slaythespire() {
+  rungameid 646570
+}
+
 crusaderkings3() {
   setxkbmap us
-  steam steam://rungameid/1158310
+  rungameid 1158310
 }
 
 factorio() {
-  steam steam://rungameid/427520
+  rungameid 427520
 }
 
 hollowknight() {
-  steam steam://rungameid/367520
+  rungameid 367520
+}
+
+oxygen() {
+  rungameid 457140
 }
 
 rocketls() {

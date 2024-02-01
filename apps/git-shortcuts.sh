@@ -6,6 +6,8 @@ alias reset="git fetch --all; git reset --hard $1"
 
 alias g="g-log && git $0"
 
+alias cunt="git rebase --continue"
+
 
 __git_complete ch _git_checkout
 # git checkout shortcut

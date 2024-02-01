@@ -5,6 +5,14 @@ var SQL_VOGUE "data source=DESKTOP-G5OK21D\SQLEXPRESS02;initial catalog=master;t
 
 var NODE_OPTIONS --max_old_space_size=8048
 
+commit() {
+  local path=`git rev-parse --show-toplevel`
+  local repo=`basename $path`
+  local command="git commit $@"
+  echo "$repo - $command" ~/project-log.txt
+  exec command
+}
+
 sql_vogue() {
   echo 'sqlcmd -S DESKTOP-G5OK21D\SQLEXPRESS02 -E'
 }
@@ -21,6 +29,12 @@ hours_remaining() {
 
 log_time() {
   uptime -s | xargs node "$CUBUS/harvest/logTimeToHarvest.js" 
+}
+
+rework() {
+  echo "Logging time..."
+  export NODE_NO_WARNINGS=1 
+  log_time && sleep 0.5 && systemctl reboot
 }
 
 endwork() {
@@ -110,8 +124,21 @@ cunexttask() {
 
 }
 
+hitapr() {
+  echo "---PR---"
+  echo "https://github.com/Fannsker/Hrt/pull/new/hitataekni-production..."`git branch --show`
+}
+
 ghtoken() {
   cat ~/.no_move_these/githubtoken | clipboard
+}
+
+hrt() {
+  cubusstack "$CUBUS/Hrt" "HrtClientApp" "Hrt.sln" "$@"
+}
+
+hitataekni() {
+  cubusstack "$CUBUS/Hrt" "HrtClientApp" "Hrt.sln" "$@"
 }
 
 ab() {
@@ -184,6 +211,10 @@ skorri() {
 	cubusstack "$CUBUS/SkorriVendor" "SkorriVendorClientApp" "CubeShop.sln" "$@"
 }
 
+takk() {
+	cubusstack "$CUBUS/TakkVendor" "TakkClientApp" "CubeShop.sln" "$@"
+}
+
 gap() {
 	cubusstack "$CUBUS/GapVendor" "GapClientApp" "CubeShop.sln" "$@"
 }
@@ -202,7 +233,7 @@ ms() {
 
 vendor() {
   if [ "$1" = "start" ]; then
-    cubusstack "$CUBUS/SalesVendor" "SalesClientApp" "SalesVendor.sln" start -- -- --port "8080"
+    cubusstack "$CUBUS/SalesVendor" "SalesClientApp" "SalesVendor.sln" start 
   else
 	  cubusstack "$CUBUS/SalesVendor" "SalesClientApp" "SalesVendor.sln" "$@"
   fi
@@ -250,12 +281,24 @@ cutunnel() {
   ngrok http https://localhost:5001
 }
 
+vendortunnel() {
+  ngrok http https://localhost:44438
+}
+
 harvestTime() {
   node ~/projects/harvest/index.js
 }
 
 cubelog() {
   cat ~/project-log.txt | awk 'NR % 4 == 0' 
+}
+
+custart() {
+  nohup slack --enable-features=WebRTCPipeWireCapturer & echo "Slack started"
+  nohup spotify & echo "Spotify started"
+  nohup datagrip & echo "Spotify started"
+  nohup birdtray & echo "Thunderbird started"
+  nohup surfshark & echo "Surfshark started"
 }
 
 cubusstack() {
@@ -273,12 +316,7 @@ cubusstack() {
 	    if [ "$command" = "storm" ]; then
 	    	nohup webstorm . & echo "Webstorm for $webapproot started"
 	    elif [ "$command" = "startup" ]; then
-	    	nohup slack --enable-features=WebRTCPipeWireCapturer & echo "Slack started"
-	    	nohup spotify & echo "Spotify started"
-	    	nohup datagrip & echo "Spotify started"
-	    	nohup birdtray & echo "Thunderbird started"
-	    	nohup surfshark & echo "Surfshark started"
-        nohup sh -c 'XAPP_FORCE_GTKWINDOW_ICON=/home/oli/Data/Downloads/asana-logo-favicon@3x.png firefox --class WebApp-Asana7446 --profile /home/oli/.local/share/ice/firefox/Asana7446 --no-remote http://asana.com' & echo "Asana started"
+        custart
 	    	eval "cubusstack $root $webapproot $solutionName all"
 	    elif [ "$command" = "all" ]; then
 	    	eval "cubusstack $root $webapproot $solutionName storm"
