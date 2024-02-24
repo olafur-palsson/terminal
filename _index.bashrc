@@ -52,6 +52,7 @@ path "/home/oli/.cargo/bin"
 import "$TERMINAL/init"
 import "$TERMINAL/os"
 import "$TERMINAL/languages"
+import "$TERMINAL/misc"
 # import "$TERMINAL/starship"
 
 # Load bash apps and project specific bash
