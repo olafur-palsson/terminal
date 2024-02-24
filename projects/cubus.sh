@@ -332,3 +332,10 @@ cubusstack() {
 	fi
 }
 
+usenpm() {
+  json -I -f angular.json -e "this.cli.packageManager='npm'"
+}
+
+usebun() {
+  json -I -f angular.json -e "this.cli.packageManager='bun'"
+}
