@@ -11,5 +11,8 @@ import "$TERMINAL_PROJECTS/schoolio"
 import "$TERMINAL_PROJECTS/cubus"
 import "$TERMINAL_PROJECTS/shop"
 import "$TERMINAL_PROJECTS/html"
+import "$TERMINAL_PROJECTS/swagger"
+import "$TERMINAL_PROJECTS/cubus/_index.sh"
+import "$TERMINAL_PROJECTS/chess"
 
 # import "$TERMINAL_APPS/serverless"
