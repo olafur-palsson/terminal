@@ -1,6 +1,6 @@
 getip() {
   wl-copy `curl https://europe-north1-yoloproj-384909.cloudfunctions.net/hello-node-function/ip`
-  wl-paste 
+  wl-paste
 }
 
 setip () {
@@ -14,7 +14,7 @@ server() {
 
 _server() {
   cd ~
-  sshpass -p$1 ssh oli@192.168.1.213
+  sshpass -p$1 ssh oli@192.168.1.109
 }
 
 # personal_gcloud

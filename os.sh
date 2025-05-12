@@ -4,6 +4,8 @@
 
 # Constants
 var HISTTIMEFORMAT "%y-%m-%dT%T "
+var HISTFILESIZE ""
+var HISTSIZE ""
 
 alias ll='ls -alF'
 alias la='ls -A'
@@ -21,6 +23,11 @@ iswayland() {
 math () {
   local expression="$@"
   awk "BEGIN { print $expression }"
+}
+
+jbl-one() {
+  bluetoothctl power on
+  bluetoothctl connect "78:5E:A2:6E:7F:8A"
 }
 
 portuse() {
@@ -107,6 +114,7 @@ killregex() {
 }
 
 alias formatjsonclipboard="clipboard | jq | clipboard"
+alias pp="wl-paste | json_pp"
 
 # Search history of bash
 alias searchhistory="history | grep"
