@@ -27,6 +27,7 @@ sekkur() {
 	cubusstack "$CUBUS/SekkurVendor" "SekkurVendorClientApp" "CubeShop.sln" "$@"
 }
 
+
 regalo() {
 	cubusstack "$CUBUS/Regalo" "RegaloClientApp" "CubeShop.sln" "$@"
 }
@@ -72,8 +73,10 @@ halldor() {
 }
 
 matrix() {
-	cubusstack "$CUBUS/SolarMatrix" "OfferMatrix/ClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/SolarMatrix" "OfferMatrix/ClientApp" "OfferMatrix.sln" "$@"
 }
+
+alias solarMatrix="matrix"
 
 solar() {
 	cubusstack "$CUBUS/SolarVendor" "SolarVendorClientApp" "CubeShop.sln" "$@"
