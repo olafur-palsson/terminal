@@ -122,7 +122,7 @@ cupr() {
       echo "No arg provided"
   else
       cubranch $1
-      local message=`echo "$str" | sed -E 's/([A-Z])/\ \1/g' | sed 's/^ //'`
+      local message=`echo "$1" | sed -E 's/([A-Z])/\ \1/g' | sed 's/^ //'`
       git commit -m "$message"
       g-push
       pr
