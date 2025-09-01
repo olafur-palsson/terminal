@@ -24,7 +24,6 @@ python_unittest_runner() {
     watch_do . '.*py' 'clear && python -m unittest' true
 }
 
-
 ## C++
 
 # Creates a new cpp file with an acompanying header file as .cpp and .hpp

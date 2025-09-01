@@ -67,3 +67,12 @@ g-apply-patch() {
 
 
 alias g-push='git push origin `git branch --show-current`'
+
+pr() {
+    local remote=`git remote get-url origin`
+    local branch=`git branch --show`
+    local link="$remote/pull/new/$branch"
+    open $link
+}
+
+

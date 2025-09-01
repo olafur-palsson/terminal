@@ -86,6 +86,12 @@ borguncc() {
   wl-copy "4176669999000104"
 }
 
+verifonecc() {
+  echo "4000 0000 0000 1091"
+  echo "01/23 - 734"
+  wl-copy "4000000000001091"
+}
+
 straumurcc() {
   echo "4917 6100 0000 0000"
   echo "03/30 - 737"
@@ -106,6 +112,20 @@ cubranch() {
     echo "No arg provided"
   else
     ch -b "$dateString-$1"
+  fi
+}
+
+cupr() {
+    local branch=`git branch --show`
+  if [ -z "$1" ]
+  then
+      echo "No arg provided"
+  else
+      cubranch $1
+      local message=`echo "$str" | sed -E 's/([A-Z])/\ \1/g' | sed 's/^ //'`
+      git commit -m "$message"
+      g-push
+      pr
   fi
 }
 

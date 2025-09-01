@@ -98,7 +98,11 @@ term() {
 }
 
 eterm() {
-  lvim $TERMINAL
+  nvim $TERMINAL
+}
+
+envim() {
+  nvim ~/.config/nvim/
 }
 
 # For ui

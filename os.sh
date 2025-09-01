@@ -1,6 +1,8 @@
 #!/bin/bash
 
 ## Terminal
+alias nn="nvim ."
+alias cat="batcat"
 
 # Constants
 var HISTTIMEFORMAT "%y-%m-%dT%T "
