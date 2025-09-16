@@ -1,5 +1,5 @@
 
-pass () {
+pass_sound () {
   line=$(head -n 1 /tmp/AUDIO_FEEDBACK_STATUS)
   if [ "$line" != "PASS" ]; then
     ffplay -nodisp -autoexit "$TERMINAL/scripts/pass.mp3" >/dev/null 2>&1

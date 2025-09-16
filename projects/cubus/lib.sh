@@ -59,7 +59,7 @@ cubusstack() {
         custart
 	    	eval "cubusstack $root $webapproot $solutionName all"
 	    elif [ "$command" = "all" ]; then
-	    	eval "cubusstack $root $webapproot $solutionName storm"
+	    	# eval "cubusstack $root $webapproot $solutionName storm"
 	    	eval "cubusstack $root $webapproot $solutionName ride"
 	    	eval "cubusstack $root $webapproot $solutionName start"
 	    elif [ "$command" = "ride" ]; then
