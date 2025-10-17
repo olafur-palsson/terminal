@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ## Terminal
+alias nvim="/home/oli/Data/Downloads/nvim-linux-x86_64/bin/nvim"
 alias nn="nvim ."
 alias cat="batcat"
 
@@ -25,6 +26,15 @@ iswayland() {
 math () {
   local expression="$@"
   awk "BEGIN { print $expression }"
+}
+
+img() {
+    wl-paste | xargs okular 
+}
+
+honor() {
+  bluetoothctl power on
+  bluetoothctl connect "10:28:74:92:54:A1"
 }
 
 jbl-one() {
