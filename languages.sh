@@ -6,6 +6,7 @@
 
 alias pip="pip3"
 alias python="python3"
+alias cstots="wl-paste | node ~/projects/cs-to-ts/cs-to-ts.js | wl-copy"
 
 
 alias upgradepip3="pip3 list --outdated | cut -d ' ' -f1 | tail -n +3 | xargs pip3 install --upgrade"

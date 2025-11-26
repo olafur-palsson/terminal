@@ -127,6 +127,7 @@ killregex() {
 
 alias formatjsonclipboard="clipboard | jq | clipboard"
 alias pp="wl-paste | json_pp"
+alias ppc="wl-paste | json_pp | wl-copy"
 
 # Search history of bash
 alias searchhistory="history | grep"
