@@ -19,6 +19,20 @@ backlight() {
   sudo sh -c "echo $b > /sys/class/backlight/intel_backlight/brightness"
 }
 
+p() {
+    local player=`qdbus | grep mpris`
+    local pl=`trim $player`
+    qdbus $player /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+    
+}
+
+trim() {
+    local x="$*"
+    x="${x#"${x%%[![:space:]]*}"}"   # leading
+    x="${x%"${x##*[![:space:]]}"}"   # trailing
+    printf '%s' "$x"
+}
+
 iswayland() {
   echo $XDG_SESSION_TYPE
 }

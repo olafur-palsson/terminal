@@ -121,6 +121,7 @@ cubusstack() {
 	    	cd -
 	    	nohup rider "$solutionName" & echo "Rider for $root started"
 	    else
+            rm -rf .angular
 	        echo "bun ${@: 4}"
 	        eval "bun ${@: 4}"
 	    fi
