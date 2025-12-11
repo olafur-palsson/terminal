@@ -67,6 +67,7 @@ g-apply-patch() {
 
 
 alias g-push='git push origin `git branch --show-current`'
+alias g-cont='git rebase --continue'
 
 pr() {
     local remote=`git remote get-url origin`

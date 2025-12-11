@@ -84,9 +84,10 @@ logquery2() {
 custart() {
   nohup slack --enable-features=WebRTCPipeWireCapturer & echo "Slack started"
   nohup spotify & echo "Spotify started"
+  nohup konsole & echo "Konsole started"
   nohup datagrip & echo "Datagrip started"
   nohup birdtray & echo "Thunderbird started"
-  nohup surfshark & echo "Surfshark started"
+  # nohup surfshark & echo "Surfshark started"
   nohup flatpak run --branch=stable --arch=x86_64 --command=teams-for-linux --file-forwarding com.github.IsmaelMartinez.teams_for_linux @@u %U @@ & echo "MS Teams started"
 }
 
@@ -121,6 +122,7 @@ cubusstack() {
 	    	cd -
 	    	nohup rider "$solutionName" & echo "Rider for $root started"
 	    else
+	        echo "rm -rf .angular"
             rm -rf .angular
 	        echo "bun ${@: 4}"
 	        eval "bun ${@: 4}"
