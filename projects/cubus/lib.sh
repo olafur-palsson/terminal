@@ -2,6 +2,12 @@ pd() {
     open "https://localhost:5001/umsjon/public-data" | wl-copy
 }
 
+gen() {
+    local filename=`wl-paste`
+    node ~/projects/FjallaVendor/Scripts/autogen.js "$filename" $1 | wl-copy
+    wl-paste
+}
+
 cutunnel() {
   ngrok http https://localhost:5001
 }
