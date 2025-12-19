@@ -4,7 +4,7 @@ pd() {
 
 gen() {
     local filename=`wl-paste`
-    node ~/projects/FjallaVendor/Scripts/autogen.js "$filename" $1 | wl-copy
+    node ~/projects/FjallaVendor/FjallaClientApp/Scripts/autogen.js "$filename" $1 | wl-copy
     wl-paste
 }
 

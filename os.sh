@@ -19,6 +19,11 @@ backlight() {
   sudo sh -c "echo $b > /sys/class/backlight/intel_backlight/brightness"
 }
 
+audio() {
+    wpctl set-default $1
+    pactl list short sink-inputs | cut -f1 | xargs -I{} pactl move-sink-input $1
+}
+
 p() {
     local player=`qdbus | grep mpris`
     local pl=`trim $player`
