@@ -32,6 +32,10 @@ regalo() {
 	cubusstack "$CUBUS/Regalo" "RegaloClientApp" "CubeShop.sln" "$@"
 }
 
+stilling() {
+	cubusstack "$CUBUS/stilling" "CubeShop/ClientApp" "CubeShop.sln" "$@"
+}
+
 tsmypages() {
   cubusstack "$CUBUS/TsMyPages" "MyPagesClientApp" "MyPages.sln" "$@"
 }

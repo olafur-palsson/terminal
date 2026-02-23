@@ -5,20 +5,39 @@ alias whisper-server="/home/oli/projects/whisper.cpp/build/bin/whisper-server"
 WHISPER_PORT=8080
 WHISPER_MODEL="/home/oli/projects/whisper.cpp/models/ggml-base.en-q5_0.bin"
 
+WHISPER_STARTING_LOCK="/tmp/whisper_server_starting.lock"
+
 ensure_whisper_server() {
-  if ! curl -s "http://localhost:$WHISPER_PORT/health" >/dev/null 2>&1; then
-    echo "Starting whisper server..."
+  if curl -s "http://localhost:$WHISPER_PORT/health" >/dev/null 2>&1; then
+    return 0
+  fi
+
+  if [ -f "$WHISPER_STARTING_LOCK" ]; then
+    echo "Whisper server is already starting in another terminal"
+    return 0
+  fi
+
+  touch "$WHISPER_STARTING_LOCK"
+  echo "Starting whisper server in background..."
+  (
     /home/oli/projects/whisper.cpp/build/bin/whisper-server -m "$WHISPER_MODEL" --port "$WHISPER_PORT" -t $(nproc) >/dev/null 2>&1 &
-    # Wait for server to be ready
     while ! curl -s "http://localhost:$WHISPER_PORT/health" >/dev/null 2>&1; do
       sleep 0.5
     done
-    echo "Whisper server ready"
-  fi
+    rm -f "$WHISPER_STARTING_LOCK"
+  ) &
+  disown
+}
+
+wait_whisper_server() {
+  while ! curl -s "http://localhost:$WHISPER_PORT/health" >/dev/null 2>&1; do
+    sleep 0.5
+  done
 }
 
 dictate() {
   ensure_whisper_server
+  wait_whisper_server
   konsole -e bash -c '
     source ~/.bashrc
 
@@ -54,3 +73,5 @@ dictate() {
     sleep 5
   '
 }
+
+ensure_whisper_server
