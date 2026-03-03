@@ -1,4 +1,5 @@
 alias cl="claude --allowedTools fs.read,fs.write,fs.list --permission-mode acceptEdits"
+alias todo="cl 'Do the next item on the TODO.md'"
 
 ralph() {
   local n=1

@@ -52,6 +52,11 @@ vogue() {
 	cubusstack "$CUBUS/VogueVendor" "VogueVendorClientApp" "CubeShop.sln" "$@"
 }
 
+
+workshop() {
+	cubusstack "$CUBUS/workshop" "ClientApp" "CubeShop.sln" "$@"
+}
+
 borguncc() {
   echo "4176 6699 9900 0104"
   echo "12/31 - 012"

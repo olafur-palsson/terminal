@@ -36,42 +36,7 @@ teamviewer() {
 }
 
 logquery() {
-    wl-copy "
-select *
-from Log
-where Logger != 'Microsoft.AspNetCore.Server.Kestrel'
-  -- frontend
-  and Logger != 'angular'
-  and Logger != 'Microsoft.Hosting.Lifetime'
-  -- exceptions
-  and Logger != 'Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware'
-  and Logger != 'Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware'
-
-  -- hosting
-  and Logger != 'CubeShop.Program'
-  and Logger != 'Microsoft.AspNetCore.Server.IIS.Core.IISHttpServer'
-  and Logger != 'Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServer'
-  and Logger != 'Microsoft.Extensions.Hosting.Internal.Host'
-  and Logger != 'Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor'
-  and Logger != 'Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager'
-
-  -- payments
-  and Logger != 'CubeShop.Controllers.PaymentController'
-  and Logger != 'CubeShop.Controllers.ValitorPaymentSuccessController'
-  and Logger != 'CubeShop.Controllers.TestPaymentSuccessController'
-    
-  -- sync
-  and Logger != 'CubeShop.Controllers.DkSyncController'
-  and Logger != 'CubeShop.Controllers.WebJobController'
-  and Logger != 'CubeShop.Controllers.UcSyncController'
-
-  -- other
-  and Logger != 'CubeShop.Services.Dal'
-  and Logger != 'CubeShop.Controllers.BlobStorageController'
-  and Logger != 'CubeShop.Startup.RequestResponseInterceptingMiddleware'
-  and Logger != 'CubeShop.Controllers.IslandController'
-order by Logged desc
-"
+  cat "$CUBUS_PROJECTS/logquery.sql" | wl-copy
 }
 
 logquery2() {
