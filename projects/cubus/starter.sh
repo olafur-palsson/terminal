@@ -1,14 +1,22 @@
 
 ab() {
-  cubusstack "$CUBUS/ABVendor" "CubeShop/ABVendorClientApp" "CubeShop.sln" "$@"
+  cubusstack "$CUBUS/ab" "CubeShop/ABVendorClientApp" "CubeShop.sln" "$@"
 }
 
 bilanaust() {
-	cubusstack "$CUBUS/BilanaustVendor" "CubeShop/BilanaustVendorClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/bilanaust" "CubeShop/BilanaustVendorClientApp" "CubeShop.sln" "$@"
 }
 
 fjall() {
-	cubusstack "$CUBUS/FjallaVendor" "FjallaClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/fjallakofinn" "FjallaClientApp" "CubeShop.sln" "$@"
+}
+
+fjall-workshop() {
+	cubusstack "$CUBUS/fjallakofinn-workshop" "ClientApp" "CubeShop.sln" "$@"
+}
+
+hekla() {
+  cubusstack "$CUBUS/hekla" "ClientApp" "CubeShop.sln" "$@"
 }
 
 hitataekni() {
@@ -19,17 +27,8 @@ hrt() {
   cubusstack "$CUBUS/Hrt" "HrtClientApp" "Hrt.sln" "$@"
 }
 
-rekkjan() {
-	cubusstack "$CUBUS/RekkjanVendor" "RekkjanVendorClientApp" "CubeShop.sln" "$@"
-}
-
-sekkur() {
-	cubusstack "$CUBUS/SekkurVendor" "SekkurVendorClientApp" "CubeShop.sln" "$@"
-}
-
-
 regalo() {
-	cubusstack "$CUBUS/Regalo" "RegaloClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/regalo" "RegaloClientApp" "CubeShop.sln" "$@"
 }
 
 stilling() {
@@ -40,18 +39,9 @@ tsmypages() {
   cubusstack "$CUBUS/TsMyPages" "MyPagesClientApp" "MyPages.sln" "$@"
 }
 
-tri21() {
-	cubusstack "$CUBUS/TriWebShop" "TriWebShopClientApp" "CubeShop.sln" "$@"
-}
-
 tri() {
-	cubusstack "$CUBUS/Tri2024" "TriClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/tri" "TriClientApp" "CubeShop.sln" "$@"
 }
-
-vogue() {
-	cubusstack "$CUBUS/VogueVendor" "VogueVendorClientApp" "CubeShop.sln" "$@"
-}
-
 
 workshop() {
 	cubusstack "$CUBUS/workshop" "ClientApp" "CubeShop.sln" "$@"
@@ -64,43 +54,34 @@ borguncc() {
 }
 
 azmedica() {
-	cubusstack "$CUBUS/AzMedica2021" "AzMedicaClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/azmedica" "AzMedicaClientApp" "CubeShop.sln" "$@"
 }
 
 brak() {
 	cubusstack "$CUBUS/BrakVinVendor" "CubeShop/BrakVinClientApp" "CubeShop.sln" "$@"
 }
 
-alias hj21="halldor21"
-halldor21() {
-	cubusstack "$CUBUS/Halldor2021" "HalldorClientApp" "CubeShop.sln" "$@"
-}
-
 alias hj="halldor"
 halldor() {
-	cubusstack "$CUBUS/Halldor2023" "HalldorClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/halldor-jonsson" "HalldorClientApp" "CubeShop.sln" "$@"
 }
 
 matrix() {
-	cubusstack "$CUBUS/SolarMatrix" "OfferMatrix/ClientApp" "OfferMatrix.sln" "$@"
+	cubusstack "$CUBUS/solar-matrix" "OfferMatrix/ClientApp" "OfferMatrix.sln" "$@"
 }
 
 alias solarMatrix="matrix"
 
 solar() {
-	cubusstack "$CUBUS/SolarVendor" "SolarVendorClientApp" "CubeShop.sln" "$@"
-}
-
-adidas() {
-	cubusstack "$CUBUS/AdidasVendor" "AdidasClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/solar" "SolarClientApp" "CubeShop.sln" "$@"
 }
 
 bpro() {
-	cubusstack "$CUBUS/BProVendor" "BProClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/bpro" "BProClientApp" "CubeShop.sln" "$@"
 }
 
 ntc() {
-	cubusstack "$CUBUS/NtcVendor" "NtcClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/ntc" "NtcClientApp" "CubeShop.sln" "$@"
 }
 
 skorri() {
@@ -108,34 +89,22 @@ skorri() {
 }
 
 takk() {
-	cubusstack "$CUBUS/TakkVendor" "TakkClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/takk" "TakkClientApp" "CubeShop.sln" "$@"
 }
 
 oj() {
 	cubusstack "$CUBUS/OjkVendor" "OjkClientApp" "CubeShop.sln" "$@"
 }
 
-gap() {
-	cubusstack "$CUBUS/GapVendor" "GapClientApp" "CubeShop.sln" "$@"
-}
-
-rarik() {
-  if [ "$1" = "start" ]; then
-    cubusstack "$CUBUS/Rarik" "ClientApp" "MyPages2023.sln" start -- -- --port "8080"
-  else
-    cubusstack "$CUBUS/Rarik" "ClientApp" "MyPages2023.sln" "$@"
-  fi
-}
-
 ms() {
-  cubusstack "$CUBUS/MsVendor" "MsClientApp" "CubeShop.sln" "$@"
+  cubusstack "$CUBUS/ms-ostakorfur" "MsClientApp" "CubeShop.sln" "$@"
 }
 
 vendor() {
   if [ "$1" = "start" ]; then
-    cubusstack "$CUBUS/SalesVendor" "SalesClientApp" "SalesVendor.sln" start 
+    cubusstack "$CUBUS/vendor-b2b" "SalesClientApp" "SalesVendor.sln" start 
   else
-	  cubusstack "$CUBUS/SalesVendor" "SalesClientApp" "SalesVendor.sln" "$@"
+	  cubusstack "$CUBUS/vendor-b2b" "SalesClientApp" "SalesVendor.sln" "$@"
   fi
 }
 
