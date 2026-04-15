@@ -28,10 +28,7 @@ log_time() {
 }
 
 commit() {
-  local path=`git rev-parse --show-toplevel`
-  local repo=`basename $path`
-  local command="git commit $@"
-  git commit $@ && node "$TERMINAL/scripts/project-logger.js" "$repo" "$command" >> ~/project-log.txt
+  git commit $@
 }
 
 

@@ -2,6 +2,9 @@ pd() {
     open "https://localhost:5001/umsjon/public-data" | wl-copy
 }
 
+alias mon="monitor-azure"
+alias azure-monitor="monitor-azure"
+
 gen() {
     local filename=`wl-paste`
     node ~/projects/FjallaVendor/FjallaClientApp/Scripts/autogen.js "$filename" $1 | wl-copy
