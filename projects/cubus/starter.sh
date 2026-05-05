@@ -27,6 +27,10 @@ hrt() {
   cubusstack "$CUBUS/Hrt" "HrtClientApp" "Hrt.sln" "$@"
 }
 
+michelsen() {
+  cubusstack "$CUBUS/michelsen-workshop" "ClientApp" "CubeShop.sln" "$@"
+}
+
 regalo() {
 	cubusstack "$CUBUS/regalo" "RegaloClientApp" "CubeShop.sln" "$@"
 }
@@ -93,7 +97,7 @@ takk() {
 }
 
 oj() {
-	cubusstack "$CUBUS/OjkVendor" "OjkClientApp" "CubeShop.sln" "$@"
+	cubusstack "$CUBUS/ojk" "OjkClientApp" "CubeShop.sln" "$@"
 }
 
 ms() {
