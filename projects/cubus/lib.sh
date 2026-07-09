@@ -23,8 +23,12 @@ harvestTime() {
   node ~/projects/harvest/index.js
 }
 
+cubelogtoday() {
+  cat ~/project-log.txt | tail -200 | grep `date -u +%F`
+}
+
 cubelog() {
-  cat ~/project-log.txt | awk 'NR % 4 == 0' 
+  cat ~/project-log.txt | tail -200
 }
 
 mrkrab() {
@@ -56,13 +60,14 @@ logquery2() {
 }
 
 custart() {
-  nohup slack --enable-features=WebRTCPipeWireCapturer & echo "Slack started"
+  # nohup slack --enable-features=WebRTCPipeWireCapturer & echo "Slack started"
   nohup spotify & echo "Spotify started"
   nohup konsole & echo "Konsole started"
   nohup datagrip & echo "Datagrip started"
   nohup birdtray & echo "Thunderbird started"
+  # nohup flatpak run --command=/app/bin/chromium org.chromium.Chromium --profile-directory=Default --app-id=pommaclcbfghclhalboakcipcmmndhcj && echo "Google Chat started"
   # nohup surfshark & echo "Surfshark started"
-  nohup flatpak run --branch=stable --arch=x86_64 --command=teams-for-linux --file-forwarding com.github.IsmaelMartinez.teams_for_linux @@u %U @@ & echo "MS Teams started"
+  # nohup flatpak run --branch=stable --arch=x86_64 --command=teams-for-linux --file-forwarding com.github.IsmaelMartinez.teams_for_linux @@u %U @@ & echo "MS Teams started"
 }
 
 cubusstack() {

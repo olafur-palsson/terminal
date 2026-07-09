@@ -1,4 +1,4 @@
-alias cx="codex -s workspace-write"
+alias cx='codex -s workspace-write --ask-for-approval on-request'
 alias todo="cl 'Do the next item on the TODO.md'"
 
 ralph() {

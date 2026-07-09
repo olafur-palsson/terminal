@@ -3,6 +3,10 @@ ab() {
   cubusstack "$CUBUS/ab" "CubeShop/ABVendorClientApp" "CubeShop.sln" "$@"
 }
 
+adidas() {
+  cubusstack "$CUBUS/adidas" "AdidasClientApp" "CubeShop.sln" "$@"
+}
+
 bilanaust() {
 	cubusstack "$CUBUS/bilanaust" "CubeShop/BilanaustVendorClientApp" "CubeShop.sln" "$@"
 }
